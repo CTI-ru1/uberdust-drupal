@@ -8,14 +8,11 @@ $capability1 = "Consumption";
 $maxRows = 10;
 
 
+	drupal_add_js('http://code.jquery.com/jquery-1.9.1.min.js', 'external');
+	drupal_add_js('http://code.highcharts.com/highcharts.js', 'external');
+	drupal_add_js('http://code.highcharts.com/highcharts-more.js', 'external');
+	drupal_add_js('http://code.highcharts.com/modules/exporting.js', 'external');
 ?>
-
-
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/highcharts-more.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
 
     <script>
         var values = new Array();
@@ -195,14 +192,14 @@ $maxRows = 10;
         for ($i = 1; $i <= $count; $i++) {
           echo "<tr>";
             if($status[$i]==0.0)
-                echo "<td width='25%'><img src='led-off-md.png' alt='off' width='50' height='50'></td>";
+                echo "<td width='25%'><img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='50' height='50'></td>";
             elseif($status[$i]==1.0)
-                echo "<td width ='25%'><img src='led-on-md.png' alt='on' width='50' height='50'></td>";
+                echo "<td width ='25%'><img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='50' height='50'></td>";
             echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
 	    if($status[$i]==0.0)
-                echo "<td><img src='newswitch0.png' alt='off' width='80' height='80'></td></tr>";
+                echo "<td><img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'></td></tr>";
             elseif($status[$i]==1.0)
-	    	echo "<td><img src='newswitch1.png' alt='off' width='80' height='80'></td></tr>";
+	    	echo "<td><img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'></td></tr>";
         }
         echo "</table>";
     
