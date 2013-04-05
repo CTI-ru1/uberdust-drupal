@@ -80,7 +80,7 @@ $maxRows = 10;
                 chart: {
                     renderTo: 'chart_div<?php echo $j;?>',
                     type: 'gauge',
-                    plotBackgroundColor: #222222,
+                    plotBackgroundColor: 222222,
                     plotBackgroundImage: null,
                     plotBorderWidth: 0,
                     plotShadow: false
