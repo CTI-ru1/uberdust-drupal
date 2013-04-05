@@ -3,7 +3,7 @@ function power_sensor_show_all(){
 $room = "CTI Room 0.I.1";
 $node1Mac = "150.140.5.67";
 $node1Type = "iSense";
-$nodeUrn1 = "urn:wisebed:ctitestbed:150.140.5.67";
+$nodeUrn1 = "urn:wisebed:ctitestbed:";
 $capability1 = "Consumption";
 $maxRows = 10;
 
@@ -24,7 +24,7 @@ $maxRows = 10;
 	
 
         <?php
-        $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . "/capabilities" );
+        $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
         $j=0;
 	    $k=0;
@@ -32,7 +32,7 @@ $maxRows = 10;
 		    if(substr($line[$i],-1,1)=="r"){
                  $k++;
                  $id = substr($line[$i],-2,1);
-                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
+                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
                  $status[$k]=$row[1];
 					
@@ -42,7 +42,7 @@ $maxRows = 10;
               $j++;?>
                 values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
-                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . "/capability/urn:wisebed:node:capability:" . $id . "s/tabdelimited/limit/" . $maxRows);
+                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/tabdelimited/limit/" . $maxRows);
                         $lines = explode("\n", $tabdelimited, $maxRows);
                         unset($lines[count($lines) - 1]);
                         $firstRow = explode("\t", $lines[0]);
