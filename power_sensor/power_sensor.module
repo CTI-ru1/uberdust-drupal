@@ -196,17 +196,17 @@ $maxRows = 10;
 		echo "<table>";
 		for ($i = 1; $i <= $count; $i++) {
 			 echo "<tr>";
-			 echo "<td> <table>";
+			// echo "<td> <table>";
 			 if($status[$i]==0.0)
-			    echo "<tr><img src='led-off-md.png' alt='off' width='65' height='65'></tr>";
+			//    echo "<tr><img src='led-off-md.png' alt='off' width='65' height='65'></tr>";
 			 elseif($status[$i]==1.0)
-			     echo "<tr><img src='led-on-md.png' alt='on' width='65' height='65'></tr>";
+		//	     echo "<tr><img src='led-on-md.png' alt='on' width='65' height='65'></tr>";
 			 echo "<br>";
 			 if($status[$i]==0.0)
-		    	     echo "<tr><img src='newswitch0.png' alt='off' width='80' height='80'></tr>";
+		    //	     echo "<tr><img src='newswitch0.png' alt='off' width='80' height='80'></tr>";
 		    	 elseif($status[$i]==1.0)
-		       	     echo "<tr><img src='newswitch1.png' alt='off' width='80' height='80'></tr>";
-			 echo "</table></td>";
+		  //     	     echo "<tr><img src='newswitch1.png' alt='off' width='80' height='80'></tr>";
+		//	 echo "</table></td>";
 		 
 	 		echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
 			echo "</tr>";
