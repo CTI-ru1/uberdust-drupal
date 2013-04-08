@@ -194,9 +194,8 @@ $maxRows = 10;
 		?>
 	    </script>
 
-	    <?php
-		 echo "<table><col align='right'>";
-    	         for ($i = 1; $i <= $count; $i++) {
+	    <?php echo "<table><col align='right'>";
+      		  for ($i = 1; $i <= $count; $i++) {
 			 echo "<tr>";
 			 echo "<td> <table align=center ><ul style='list-style: none;'>";
 			 if($status[$i]==0.0)
@@ -210,10 +209,10 @@ $maxRows = 10;
 		       	     echo "<li><img src='newswitch1.png' alt='off' width='80' height='80'></li>";
 			 echo "</table></td>";
 		 
-	 		echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
+		 	echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
 			echo "</tr>";
-			}
- 		   }//if(empty($_GET)) 
-		}
+        		}//for
+ 	 }//if(empty($_GET)) 
+}
 
 
