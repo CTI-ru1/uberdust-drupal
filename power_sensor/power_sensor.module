@@ -212,9 +212,9 @@ $maxRows = 10;
 		 
 	 		echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
 		echo "</tr>";
-        }////
-
+        }//for
+	echo "</table>";
    }//if(empty($_GET)) 
-}
+}//function
 
 
