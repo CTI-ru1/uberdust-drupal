@@ -15,7 +15,7 @@ $maxRows = 10;
 		$line = explode("\n", $status_raw);
 		for($i=0; $i<sizeof($line); $i++){
 			$nodetype= explode("\t", $line[$i]);		
-			if(isset($nodetype[3])&&($nodetype[3]=="powerstrip")){	
+			if(isset($nodetype[3])$nodetype[3]=="powerstrip"){	
 				$node=explode(":", $nodetype[0]);
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[3].'">'.$nodetype[0].'</a></p>';
 			}	
@@ -79,112 +79,114 @@ $maxRows = 10;
 		?>
 	
 		
-		 $(function drawChart(){
+		$(function drawChart(){
 	
-            var chart;
-            chart = new Highcharts.Chart({
+		    var chart;
+		    chart = new Highcharts.Chart({
 
-                chart: {
-                    renderTo: 'chart_div<?php echo $j;?>',
-                    type: 'gauge',
-                    plotBackgroundColor: '#222222',
-                    plotBackgroundImage: null,
-                    plotBorderWidth: 0,
-                    plotShadow: false
+		        chart: {
+		            renderTo: 'chart_div<?php echo $j;?>',
+		            type: 'gauge',
+		            plotBackgroundColor: '#222222',
+		            plotBackgroundImage: null,
+		            plotBorderWidth: 0,
+		            plotShadow: false
 
-                },
+		        },
 
-                title: {
-                    text: 'Sensor <?php echo $j;?>'
-                },
+		        title: {
+		            text: 'Sensor <?php echo $j;?>'
+		        },
 
-                pane: {
-                    startAngle: -150,
-                    endAngle: 150,
-                    background: [
-                        {
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        },
-                        {
-                            backgroundColor: {
-                                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        },
-                        {
-                            // default background
-                        },
-                        {
-                            backgroundColor: '#FFF',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }
-                    ]
-                },
+		        pane: {
+		            startAngle: -150,
+		            endAngle: 150,
+		            background: [
+		                {
+		                    backgroundColor: {
+		                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+		                        stops: [
+		                            [0, '#FFF'],
+		                            [1, '#333']
+		                        ]
+		                    },
+		                    borderWidth: 0,
+		                    outerRadius: '109%'
+		                },
+		                {
+		                    backgroundColor: {
+		                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+		                        stops: [
+		                            [0, '#333'],
+		                            [1, '#FFF']
+		                        ]
+		                    },
+		                    borderWidth: 1,
+		                    outerRadius: '107%'
+		                },
+		                {
+		                    // default background
+		                },
+		                {
+		                    backgroundColor: '#DDD',
+		                    borderWidth: 0,
+		                    outerRadius: '105%',
+		                    innerRadius: '103%'
+		                }
+		            ]
+		        },
 
-                // the value axis
-                yAxis: {
-                    min: minimum,
-                    max: maximum,
+		        // the value axis
+		        yAxis: {
+		            min: minimum,
+		            max: maximum,
 
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
+		                minorTickInterval: 'auto',
+		                minorTickWidth: 1,
+		                minorTickLength: 10,
+		                minorTickPosition: 'inside',
+		                minorTickColor: '#666',
 
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                            },
-                        title: {
-                            text: 'mA'
-                            },
-                        plotBands: [{
-                            from: 0,
-                            to: maximum*0.75,
-                            color: '#55BF3B' // green
-                            }, {
-                            from: maximum*0.75,
-                            to: maximum*0.875 ,
-                            color: '#DDDF0D' // yellow
-                            }, {
-                            from: maximum*0.875,
-                            to: maximum,
-                            color: '#DF5353' // red
-                            }]
-                        },
+		                tickPixelInterval: 30,
+		                tickWidth: 2,
+		                tickPosition: 'inside',
+		                tickLength: 10,
+		                tickColor: '#666',
+		                labels: {
+		                    step: 2,
+		                    rotation: 'auto'
+		                    },
+		                title: {
+		                    text: 'mA'
+		                    },
+		                plotBands: [{
+		                    from: 0,
+		                    to: maximum*0.75,
+		                    color: '#55BF3B' // green
+		                    }, {
+		                    from: maximum*0.75,
+		                    to: maximum*0.875 ,
+		                    color: '#DDDF0D' // yellow
+		                    }, {
+		                    from: maximum*0.875,
+		                    to: maximum,
+		                    color: '#DF5353' // red
+		                    }]
+		                },
 
-                        series: [{
-                            name: 'Current Flow',
-                            data: [current[<?php echo $j;?>]],
-                            tooltip: {
-                            valueSuffix: ' mA'
-                            }
-                        }]
-               });
-	
-	chart.setSize(230, 230, false);
-        });
+		                series: [{
+		                    name: 'Current Flow',
+		                    data: [current[<?php echo $j;?>]],
+		                    tooltip: {
+		                    valueSuffix: ' mA'
+		                    }
+		                }]
+		       });
+		chart.setSize(230, 230, false);
+		});
+
+
+
 
 		<?php
 		
@@ -192,28 +194,27 @@ $maxRows = 10;
 		?>
 	    </script>
 
-	  <?php
-		echo "<table>";
-		for ($i = 1; $i <= $count; $i++) {
-			 echo "<tr>";
-			 echo "<td> <table>";
+	    <?php
+		echo "<table><col align='right'>";
+        for ($i = 1; $i <= $count; $i++) {
+		 echo "<tr>";
+		 echo "<td> <table align=center >";
 			 if($status[$i]==0.0)
-			    echo "<tr><img src='led-off-md.png' alt='off' width='65' height='65'></tr>";
+			    echo "<tr><img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='50' height='50'></<tr>";
 			 elseif($status[$i]==1.0)
-			     echo "<tr><img src='led-on-md.png' alt='on' width='65' height='65'></tr>";
+			     echo "<tr><img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='50' height='50'></<tr>";
 			 echo "<br>";
 			 if($status[$i]==0.0)
-		    	     echo "<tr><img src='newswitch0.png' alt='off' width='80' height='80'></tr>";
+		    	     echo "<tr><img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'></<tr>";
 		    	 elseif($status[$i]==1.0)
-		       	     echo "<tr><img src='newswitch1.png' alt='off' width='80' height='80'></tr>";
+		       	     echo "<tr><img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'></<tr>";
 			 echo "</table></td>";
 		 
 	 		echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
-			echo "</tr>";
-		}///////
-		echo "</table>";
-	     
-	}//if(empty($_GET))
+		echo "</tr>";
+        }////
+
+   }//if(empty($_GET)) 
 }
 
 
