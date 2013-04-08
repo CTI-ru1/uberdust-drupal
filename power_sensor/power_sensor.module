@@ -197,7 +197,7 @@ $maxRows = 10;
 	    <?php echo "<table><col align='right'>";
       		  for ($i = 1; $i <= $count; $i++) {
 			 echo "<tr>";
-			 echo "<td> <table align=center ><ul style='list-style: none;'>";
+			 echo "<td> <table align=center > <ul style='list-style: none;'>";
 			 if($status[$i]==0.0)
 			    echo "<li ><img src='led-off-md.png' alt='off' width='65' height='65'></li>";
 			 elseif($status[$i]==1.0)
