@@ -202,7 +202,7 @@ $maxRows = 10;
 			 if($status[$i]==0.0)
 			    echo "<tr><img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='50' height='50'></tr>";
 			 elseif($status[$i]==1.0)
-			     echo "<tr><img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='50' height='50'><tr>";
+			     echo "<tr><img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='50' height='50'></tr>";
 			 echo "<br>";
 			 if($status[$i]==0.0)
 		    	     echo "<tr><img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'></tr>";
