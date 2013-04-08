@@ -195,21 +195,24 @@ $maxRows = 10;
 	    </script>
 
 	    <?php
-		echo "<table><col align='right'>";
-		for ($i = 1; $i <= $count; $i++) {
-		  echo "<tr>";
-		    if($status[$i]==0.0)
-		        echo "<td width='25%'><img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='50' height='50'></td>";
-		    elseif($status[$i]==1.0)
-		        echo "<td width ='25%'><img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='50' height='50'></td>";
-		    echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
-		    if($status[$i]==0.0)
-		        echo "<td><img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'></td></tr>";
-		    elseif($status[$i]==1.0)
-		    	echo "<td><img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'></td></tr>";
+		 echo "<table><col align='right'>";
+    	         for ($i = 1; $i <= $count; $i++) {
+			 echo "<tr>";
+			 echo "<td> <table align=center ><ul style='list-style: none;'>";
+			 if($status[$i]==0.0)
+			    echo "<li ><img src='led-off-md.png' alt='off' width='65' height='65'></li>";
+			 elseif($status[$i]==1.0)
+			     echo "<li ><img src='led-on-md.png' alt='on' width='65' height='65'></li>";
+			echo "<br>";
+			 if($status[$i]==0.0)
+		    	     echo "<li><img src='newswitch0.png' alt='off' width='80' height='80'></li>";
+		    	 elseif($status[$i]==1.0)
+		       	     echo "<li><img src='newswitch1.png' alt='off' width='80' height='80'></li>";
+			 echo "</table></td>";
+		 
+	 		echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
+			echo "</tr>";
+ 		   }//if(empty($_GET)) 
 		}
-		echo "</table>";
-   }//if(empty($_GET)) 
-}
 
 
