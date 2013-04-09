@@ -11,7 +11,7 @@ $maxRows = 10;
 ?>
 <?php 
 	if(empty($_GET['ip'])){	
-		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw" );
+		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
 		$line = explode("\n", $status_raw);
 		for($i=0; $i<sizeof($line); $i++){
 			$nodetype= explode("\t", $line[$i]);		
@@ -23,7 +23,7 @@ $maxRows = 10;
 	
 	}
 	else{ ?>
-		 <script>
+		<script>
 		var values = new Array();
 		var current = new Array();
 		var max_value = new Array();
@@ -83,7 +83,6 @@ $maxRows = 10;
 	
 		    var chart;
 		    chart = new Highcharts.Chart({
-
 		        chart: {
 		            renderTo: 'chart_div<?php echo $j;?>',
 		            type: 'gauge',
@@ -91,13 +90,10 @@ $maxRows = 10;
 		            plotBackgroundImage: null,
 		            plotBorderWidth: 0,
 		            plotShadow: false
-
 		        },
-
 		        title: {
 		            text: 'Sensor <?php echo $j;?>'
 		        },
-
 		        pane: {
 		            startAngle: -150,
 		            endAngle: 150,
@@ -183,14 +179,14 @@ $maxRows = 10;
 		                }]
 		       });
 		chart.setSize(230, 230, false);
-		});
+		});	//end of function drawchart
 
 
 
 
 		<?php
 		
-		}
+		}//end of for loop
 		?>
 	    </script>
 
