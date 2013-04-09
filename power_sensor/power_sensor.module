@@ -190,7 +190,7 @@ $maxRows = 10;
 		?>
 	    </script>
 
-	   <?php
+	    <?php
                 echo "<table>";
                  for ($i = 1; $i <= $count; $i++) {
                  echo "<tr>";
