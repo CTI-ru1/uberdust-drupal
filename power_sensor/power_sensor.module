@@ -204,7 +204,7 @@ $maxRows = 10;
 		    	 elseif($status[$i]==1.0)
 		       	     echo "<li><img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'></li>";
 		 echo "</ul></td>";
-		 echo "<td><br/><div id='chart_div" . $i . "' style='width: 300px; height: 200px; margin: 0 auto' ></div></td>";
+		 echo "<td><div id='chart_div" . $i . "' style='width: 300px; height: 200px; margin: 0 auto' ></div></td>";
 		 echo "</tr>";
         }//for
 	echo "</table>";
