@@ -194,7 +194,7 @@ $maxRows = 10;
 		echo "<table>";
        		 for ($i = 1; $i <= $count; $i++) {
 		 echo "<tr>";
-		 echo "<td> <ul style='list-style: none;' >";
+		 echo "<td><tr> <ul style='list-style: none;'>";
 			 if($status[$i]==0.0)
 			    echo "<li><img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='65' height='65'></li>";
 			 elseif($status[$i]==1.0)
@@ -203,8 +203,8 @@ $maxRows = 10;
 		    	     echo "<li><img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'></li>";
 		    	 elseif($status[$i]==1.0)
 		       	     echo "<li><img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'></li>";
-		 echo "</ul></td>";
-		 echo "<td><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
+		 echo "</ul></tr></td>";
+		 echo "<td><tr><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></tr></td>";
 		 echo "</tr>";
         }//for
 	echo "</table>";
