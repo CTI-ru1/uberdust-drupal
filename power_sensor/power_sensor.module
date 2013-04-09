@@ -188,6 +188,22 @@ $maxRows = 10;
 		
 		}//end of for loop
 		?>
+		var state=new Array();
+		function activate(node,zone){
+			if (state[zone]==1){
+				state[zone]=0;
+				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
+			}
+			else{
+				state[zone]=1;
+				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
+			}
+			alert("click sensor"+ zone+" to state "+ state[zone]);
+			xmlhttp=new XMLHttpRequest();
+			xmlhttp.open("GET",'http://uberdust.cti.gr/rest/sendCommand/destination/urn:wisebed:ctitestbed:'+node+'/payload/7f,69,70,33,51,2,ff,ff,93,6c,7a,3'+zone+',3'+state[zone]+'a,68,74');
+			xmlhttp.send();
+		
+		}
 	    </script>
 
 	    <?php
@@ -195,11 +211,11 @@ $maxRows = 10;
                  for ($i = 1; $i <= $count; $i++) {
                  echo "<tr>";
                          echo "<td>";
+                                 $n='0x4ec';
                                  if($status[$i]==0.0)
-                                     echo "<img src='/uberdust/sites/all/images/sensors/newswitch0.png' alt='off' width='80' height='80'>";
-                                 elseif($status[$i]==1.0)
-                                     echo "<img src='/uberdust/sites/all/images/sensors/newswitch1.png' alt='off' width='80' height='80'>";
-
+				 	echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                    	         elseif($status[$i]==1.0)
+                                        echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
                         echo "</td>";
                          echo "<td rowspan=2><div id='chart_div" . $i . "' style='width: 400px; height: 300px; margin: 0 auto' ></div></td>";
                 echo "</tr>";
