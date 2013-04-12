@@ -352,10 +352,14 @@ for($j=1;$j<=$count;$j++){
 			if (state[zone]==1){
 				state[zone]=0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
+                $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
+                
+
 			}
 			else{
 				state[zone]=1;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
+                $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
 			}
 			//alert("click sensor"+ zone+" to state "+ state[zone]);
 			//xmlhttp=new XMLHttpRequest();
