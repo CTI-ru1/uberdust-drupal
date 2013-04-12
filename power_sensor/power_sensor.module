@@ -33,14 +33,6 @@ $maxRows = 10;
 
 
 
-
-
-
-
-
-
-
-
     <?php
         $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
@@ -87,14 +79,25 @@ $current[$j]=$firstRow[1];?>
 }// end of for loop
 ?>
     function message(value2add){
-        // var myspan=document.getElementById('area');
-        // var oldtext = myspan.innerHTML;
-        // myspan.innerHTML=value2add+"<br>"+oldtext;
-    }
-    //////////////////////
-    // hostname="uberdust.cti.gr"
-    //node=<?php $nodeUrn1 . $_GET['ip']?>
-    //capability="urn:wisebed:node:capability:1i"
+        var val= new Array();
+        var capability=" ";
+        val=value2add.split(" ");
+        capability=val[1].split(":");
+        id=capability[4].split("");
+
+        if(id[1]=="s"){             //value
+            window.current[id[0]]=val[8];
+        }
+        if(id[1]=="r"){             //status
+            if(val[8]==1){
+                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
+            }else{
+                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
+            }
+        }
+
+
+    } // end of message()
 
 
     function clearMessages(){
@@ -145,22 +148,9 @@ $current[$j]=$firstRow[1];?>
             }
 
             sockets[mysock_id].onmessage = function(msg){
-                //console.log("minima");
                 if (!(msg.data instanceof Blob)) {
                     if (msg.data!="pong"){
-                        // message(msg.data);
-                        value1=msg.data;
-                        var val= new Array();
-
-                        var capability=" ";
-                        val=value1.split(" ");
-                        capability=val[1].split(":");
-                        id=capability[4].split("");
-                        window.current[id[0]]=val[8];
-                        console.log(window.current[id[0]]+" "+capability[4]);
-                        // document.getElementById('value'+capability[4]).innerHTML=window.current[id[0]];
-
-
+                        message(msg.data);
 
                     }
                 }
@@ -346,7 +336,7 @@ for($j=1;$j<=$count;$j++){
     ?>
 
     connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>s");
-
+    connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>r");
     <?php
         }
       ?>
@@ -390,10 +380,10 @@ for($j=1;$j<=$count;$j++){
                         echo "</td></tr>";
                         echo "<tr><td>";
                                  if($status[$i]==0.0)
-                                    echo "<img src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='65' height='65'>";
+                                     echo "<img id='led".$i."' src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='65' height='65'>";
                                  elseif($status[$i]==1.0)
-                                     echo "<img src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='65' height='65'>";
-                         echo "</td></tr>";
+                                     echo "<img id='led".$i."' src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='65' height='65'>";
+                        echo "</td></tr>";
                         echo "</tr></table>";
                         echo "</td>";
                          echo "<td id='chart_div" . $i . "' style='width: 400px; margin: 0 0 0 0; ' ></td>";
