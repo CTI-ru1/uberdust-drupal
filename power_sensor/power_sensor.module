@@ -353,7 +353,7 @@ for($j=1;$j<=$count;$j++){
 				state[zone]=0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
                 $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
-                
+
 
 			}
 			else{
@@ -370,7 +370,7 @@ for($j=1;$j<=$count;$j++){
 	    </script>
 
 	   <?php
-                echo "<table>";
+                echo "<table aling='center'>";
                  for ($i = 1; $i <= $count; $i++) {
                  echo "<tr>";
                          echo "<td style='vertical-align:top;'>";
