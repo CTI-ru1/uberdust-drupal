@@ -78,7 +78,7 @@ $current[$j]=$firstRow[1];?>
     <?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
     <?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
     <?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
-    if(max_value[<?php echo $j;?>]> maximum){ maximum = max_value[<?php echo $j; ?>];}
+    if(max_value[<?php echo $j;?>]> maximum){ maximum = 2 * max_value[<?php echo $j; ?>];}
     if(min_value[<?php echo $j;?>]< minimum){ minimum = min_value[<?php echo $j; ?>];}
 
     <?php
