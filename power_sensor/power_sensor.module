@@ -17,6 +17,7 @@ $maxRows = 10;
 			$nodetype= explode("\t", $line[$i]);		
 			if(isset($nodetype[3])&& ($nodetype[3]=="powerstrip")){	
 				$node=explode(":", $nodetype[0]);
+                echo ' <h3>Choose one of the available power strips:</h3> ';
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[3].'">'.$nodetype[0].'</a></p>';
 			}	
 		}			
