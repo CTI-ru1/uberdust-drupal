@@ -7,10 +7,7 @@ $nodeUrn1 = "urn:wisebed:ctitestbed:";
 $capability1 = "Consumption";
 $maxRows = 10;
 //
-if($_GET['q']=="user")
-    $control=1;
-else
-    $control=0;
+
 
 ?>
     <?php
