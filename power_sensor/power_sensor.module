@@ -1,12 +1,16 @@
 <?php
-function power_sensor_show_all(){
+function power_sensor_show_all($show_controls){
 $room = "CTI Room 0.I.1";
 $node1Mac = "150.140.5.67";
 $node1Type = "iSense";
 $nodeUrn1 = "urn:wisebed:ctitestbed:";
 $capability1 = "Consumption";
 $maxRows = 10;
-
+//
+if($_GET['q']=="user")
+    $control=1;
+else
+    $control=0;
 
 ?>
     <?php
@@ -318,10 +322,12 @@ for($j=1;$j<=$count;$j++){
                         echo "<table style='vertical-align:top;'>";
                          echo "<tr><td>";
                                  $n='0x4ec';
-                                 if($status[$i]==0.0)
-                                        echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
-                                 elseif($status[$i]==1.0)
-                                        echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                if($show_controls==1){
+                                     if($status[$i]==0.0)
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                     elseif($status[$i]==1.0)
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                }
                         echo "</td></tr>";
                         echo "<tr><td>";
                                  if($status[$i]==0.0)
