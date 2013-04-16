@@ -271,9 +271,9 @@ for($j=1;$j<=$count;$j++){
             }
             if(id[1]=="r"){             //status
                 if(val[8]==1){
-                    document.getElementById("led"+id[0]).src="led-on-md.png";
+                    document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
                 }else{
-                    document.getElementById("led"+id[0]).src="led-off-md.png";
+                    document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
                 }
             }
         });
