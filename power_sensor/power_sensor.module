@@ -9,7 +9,7 @@ $maxRows = 10;
 
 
 ?>
-<?php 
+    <?php
 	if(empty($_GET['ip'])){	
 		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
 		$line = explode("\n", $status_raw);
@@ -103,99 +103,6 @@ $current[$j]=$firstRow[1];?>
     function clearMessages(){
         document.getElementById('area').value="";
     }
-
-    var t=setTimeout("ping()",30000);
-    var sockets=new Array();
-    var sock_count=0;
-
-    function connect(hostname,node,capability){
-        var mysock_id=sock_count;
-        sock_count++;
-
-        //clearMessages();
-
-        var host = "ws://"+hostname+"/readings.ws";
-
-        var protocol = "SUB@"+node+"@"+capability;
-        var encodedProtocol=protocol.replace(/@/g,".").replace(/:/g,"--");
-
-
-        try{
-
-            if(!("WebSocket" in window)){
-                message("You have a browser that does not support Websockets!");
-                if(!("MozWebSocket" in window)){
-                    message("You have a browser that does not support MozWebsockets!");
-                    return -1;
-                }
-                else {
-                    sockets[mysock_id] = new MozWebSocket(host,encodedProtocol);
-
-                    message('You have a browser that supports MozWebSockets');
-                    console.log("m:You have a browser that supports MozWebSockets");
-                }
-            }
-            else {
-                //        message("encodedProtocol="+encodedProtocol);
-                //        message("Protocol="+protocol);
-                sockets[mysock_id] = new WebSocket(host,encodedProtocol);
-                // message('You have a browser that supports WebSockets');
-            }
-            sockets[mysock_id].onopen = function(){
-                //message('socket.onopen ');
-                console.log("socket.onopen");
-                //            message('Socket Status: '+socket.readyState+' (open)'+"");
-            }
-
-            sockets[mysock_id].onmessage = function(msg){
-                if (!(msg.data instanceof Blob)) {
-                    if (msg.data!="pong"){
-                        message(msg.data);
-
-                    }
-                }
-            }
-            sockets[mysock_id].onclose = function(){
-                console.log("socket.onclose");
-                //            message('Socket Status: '+socket.readyState+' (Closed)'+"");
-            }
-
-
-        } catch(exception){
-            message('Error'+exception+"");
-
-        }
-
-
-    }//End connect
-
-    function ping()
-    {
-        var i=0;
-        for (i=0;i<sock_count;i++){
-            send("ping",i);
-        }
-        var t=setTimeout("ping()",30000);
-    }
-
-    function send(text,sock_id){
-        if(text==""){
-            message('Please enter a message'+"");
-            return ;
-        }
-        try{
-            sockets[sock_id].send(text);
-            //        message('Sent: '+text+"")
-        } catch(exception){
-            message('Exception '+"");
-        }
-    }
-
-    function disconnect(sock_id){
-        sockets[sock_id].close();
-        message("Connection Closed!");
-    }
-    //////////////////
     <?php
      $count=$j;
     for($j=1; $j<=$count; $j++){
@@ -334,9 +241,42 @@ $current[$j]=$firstRow[1];?>
 
 for($j=1;$j<=$count;$j++){
     ?>
+        connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:150.140.5.67", "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
+            var val= new Array();
+            var capability=" ";
+            val=value2add.split(" ");
+            capability=val[1].split(":");
+            id=capability[4].split("");
 
-    connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>s");
-    connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>r");
+            if(id[1]=="s"){             //value
+                window.current[id[0]]=val[8];
+            }
+            if(id[1]=="r"){             //status
+                if(val[8]==1){
+                    document.getElementById("led"+id[0]).src="led-on-md.png";
+                }else{
+                    document.getElementById("led"+id[0]).src="led-off-md.png";
+                }
+            }
+        });
+        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+            var val= new Array();
+            var capability=" ";
+            val=value2add.split(" ");
+            capability=val[1].split(":");
+            id=capability[4].split("");
+
+            if(id[1]=="s"){             //value
+                window.current[id[0]]=val[8];
+            }
+            if(id[1]=="r"){             //status
+                if(val[8]==1){
+                    document.getElementById("led"+id[0]).src="led-on-md.png";
+                }else{
+                    document.getElementById("led"+id[0]).src="led-off-md.png";
+                }
+            }
+        });
     <?php
         }
       ?>
