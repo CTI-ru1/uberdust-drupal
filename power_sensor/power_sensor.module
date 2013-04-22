@@ -6,10 +6,9 @@ $node1Type = "iSense";
 $nodeUrn1 = "urn:wisebed:ctitestbed:";
 $capability1 = "Consumption";
 $maxRows = 10;
-//
-
-
 ?>
+
+
     <?php
 	if(empty($_GET['ip'])){	
 		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
@@ -28,6 +27,7 @@ $maxRows = 10;
     <script>
     window.values = new Array();
     window.current = new Array();
+    window.state=new Array();
     var max_value = new Array();
     var min_value = new Array();
     var minimum = 5000;
@@ -68,7 +68,7 @@ $maxRows = 10;
 
 
     <?php echo "current[$j] = $firstRow[1];";
-$current[$j]=$firstRow[1];?>
+    $current[$j]=$firstRow[1];?>
     <?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
     <?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
     <?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
@@ -97,8 +97,6 @@ $current[$j]=$firstRow[1];?>
                 document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
             }
         }
-
-
     } // end of message()
 
 
@@ -108,6 +106,8 @@ $current[$j]=$firstRow[1];?>
     <?php
      $count=$j;
     for($j=1; $j<=$count; $j++){
+	echo "window.state[".$j."]=".$status[$j].";" ; 
+	echo "	console.log('state '+ window.state[".$j."] );";
     ?>
 
 
@@ -224,10 +224,6 @@ $current[$j]=$firstRow[1];?>
 
                             newVal<?php echo $j;?> = window.current[<?php echo $j; ?>];
                         point<?php echo $j;?>.update(parseFloat(newVal<?php echo $j;?>));
-
-
-
-
                     }, 3000);
                 }
             });
@@ -249,17 +245,7 @@ for($j=1;$j<=$count;$j++){
             val=value2add.split(" ");
             capability=val[1].split(":");
             id=capability[4].split("");
-
-            if(id[1]=="s"){             //value
-                window.current[id[0]]=val[8];
-            }
-            if(id[1]=="r"){             //status
-                if(val[8]==1){
-                    document.getElementById("led"+id[0]).src="led-on-md.png";
-                }else{
-                    document.getElementById("led"+id[0]).src="led-off-md.png";
-                }
-            }
+            window.current[id[0]]=val[8];
         });
         connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
             var val= new Array();
@@ -267,16 +253,10 @@ for($j=1;$j<=$count;$j++){
             val=value2add.split(" ");
             capability=val[1].split(":");
             id=capability[4].split("");
-
-            if(id[1]=="s"){             //value
-                window.current[id[0]]=val[8];
-            }
-            if(id[1]=="r"){             //status
-                if(val[8]==1){
-                    document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
-                }else{
-                    document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
-                }
+            if(val[8]==1){
+                 document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
+            }else{
+                 document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
             }
         });
     <?php
@@ -289,26 +269,19 @@ for($j=1;$j<=$count;$j++){
 
 
     //switch onclick
-		function activate(node,zone){
-			if (status[zone]==1){
-				status[zone]=0;
+		function activate(zone,status){
+			if (status==1.0){
+				window.state[zone]=0.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
                 $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
-
-
 			}
 			else{
-				status[zone]=1;
+				window.state[zone]=1.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
                 $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
 			}
-			//alert("click sensor"+ zone+" to state "+ state[zone]);
-			//xmlhttp=new XMLHttpRequest();
-			//xmlhttp.open("GET",'http://uberdust.cti.gr/rest/sendCommand/destination/urn:wisebed:ctitestbed:'+node+'/payload/7f,69,70,33,51,2,ff,ff,93,6c,7a,3'+zone+',3'+state[zone]+'a,68,74');
-			//xmlhttp.send();
-		
 		}
-	    </script>
+ </script>
 
 	   <?php
                 echo "<table aling='center'>";
@@ -320,9 +293,9 @@ for($j=1;$j<=$count;$j++){
                                  $n='0x4ec';
                                 if($show_controls==1){
                                      if($status[$i]==0.0)
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$i.",window.state[".$i."])' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
                                      elseif($status[$i]==1.0)
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$n.",".$i.")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$i.",window.state[".$i."])' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
                                 }
                         echo "</td></tr>";
                         echo "<tr><td>";
