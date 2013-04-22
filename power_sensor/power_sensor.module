@@ -80,29 +80,6 @@ $maxRows = 10;
         }//end if	==s
 }// end of for loop
 ?>
-    function message(value2add){
-        var val= new Array();
-        var capability=" ";
-        val=value2add.split(" ");
-        capability=val[1].split(":");
-        id=capability[4].split("");
-
-        if(id[1]=="s"){             //value
-            window.current[id[0]]=val[8];
-        }
-        if(id[1]=="r"){             //status
-            if(val[8]==1){
-                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
-            }else{
-                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
-            }
-        }
-    } // end of message()
-
-
-    function clearMessages(){
-        document.getElementById('area').value="";
-    }
     <?php
      $count=$j;
     for($j=1; $j<=$count; $j++){
