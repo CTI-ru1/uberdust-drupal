@@ -228,12 +228,8 @@ for($j=1;$j<=$count;$j++){
             var val= new Array();
             var capability=" ";
             val=value2add.split(" ");
-	 console.log("message " + val);
-
             capability=val[1].split(":");
             id=capability[4].split("");
-	    console.log("id "+ id[0])
-	    console.log("led "+ val[8]);
             if(val[8]==1.0){
                  document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
             }else{
