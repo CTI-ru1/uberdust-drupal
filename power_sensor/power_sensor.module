@@ -230,7 +230,8 @@ for($j=1;$j<=$count;$j++){
             val=value2add.split(" ");
             capability=val[1].split(":");
             id=capability[4].split("");
-            if(val[8]==1){
+	    console.log(val[8]);
+            if(val[8]==1.0){
                  document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
             }else{
                  document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
