@@ -251,9 +251,9 @@ for($j=1;$j<=$count;$j++){
             id=capability[4].split("");
             console.log("switch ->"+val[8]);
             if(val[8]==1.0){
-                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
+                document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
             }else{
-                document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch0.png";
+                document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch0.png";
             }
         });
     <?php
