@@ -249,7 +249,6 @@ for($j=1;$j<=$count;$j++){
             val=value2add.split(" ");
             capability=val[1].split(":");
             id=capability[4].split("");
-            console.log("switch ->"+val[8]);
             if(val[8]==1.0){
                 document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
             }else{
