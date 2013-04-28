@@ -178,7 +178,7 @@ $maxRows = 10;
                     plotBands: [{
                         from: 0,
                         to: 70,
-                        color: '#98AFC7' // grey
+                        color: '#A9A9A9	' // grey
                     },{
                         from: 70,
                         to: 800,
