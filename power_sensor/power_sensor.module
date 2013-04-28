@@ -63,7 +63,7 @@ $maxRows = 10;
               $j++;?>
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
-                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/tabdelimited/limit/" . $maxRows);
+                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
                         $lines = explode("\n", $tabdelimited, $maxRows);
                         unset($lines[count($lines) - 1]);
                         $firstRow = explode("\t", $lines[0]);
@@ -78,11 +78,13 @@ $maxRows = 10;
 
     <?php echo "current[$j] = $firstRow[1];";
     $current[$j]=$firstRow[1];?>
-    <?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
-    <?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
-    <?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
-    if(max_value[<?php echo $j;?>]> maximum){ maximum = 2 * max_value[<?php echo $j; ?>];}
-    if(min_value[<?php echo $j;?>]< minimum){ minimum = min_value[<?php echo $j; ?>];}
+ 	maximum= 1500;
+	minimum= 70;
+    //<?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
+    //<?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
+    //<?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
+    //if(max_value[<?php echo $j;?>]> maximum){ maximum = 2 * max_value[<?php echo $j; ?>];}
+   // if(min_value[<?php echo $j;?>]< minimum){ minimum = min_value[<?php echo $j; ?>];}
 
     <?php
 
@@ -177,6 +179,10 @@ $maxRows = 10;
                     },
                     plotBands: [{
                         from: 0,
+                        to: 70,
+                        color: '#98AFC7' // grey
+                    },{
+                        from: 70,
                         to: maximum*0.75,
                         color: '#55BF3B' // green
                     }, {
