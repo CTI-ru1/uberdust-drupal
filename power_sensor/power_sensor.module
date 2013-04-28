@@ -183,15 +183,15 @@ $maxRows = 10;
                         color: '#98AFC7' // grey
                     },{
                         from: 70,
-                        to: maximum*0.75,
+                        to: 800,
                         color: '#55BF3B' // green
                     }, {
-                        from: maximum*0.75,
-                        to: maximum*0.875 ,
+                        from: 800,
+                        to:1200 ,
                         color: '#DDDF0D' // yellow
                     }, {
-                        from: maximum*0.875,
-                        to: maximum,
+                        from: 1200,
+                        to: 1500,
                         color: '#DF5353' // red
                     }]
                 },
