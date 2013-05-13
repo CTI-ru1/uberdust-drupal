@@ -8,11 +8,12 @@ $capability=array("Luminosity","Temperature");
 $capabilityUrn =array("urn:wisebed:node:capability:light","urn:wisebed:node:capability:temperature");
 $maxRows = 10;
 $unit="(lux)";
-$set_date= false;
+$set_date= 0;
+
 if (isset($_GET['from'])&&isset($_GET["to"]))
 {   $set_date=true;
     $from = explode("-",$_GET['from']);
-    $to =explode("-",$_GET['to']);
+    $to = explode("-",$_GET['to']);
 }
 
 ?>
@@ -53,7 +54,7 @@ if (isset($_GET['from'])&&isset($_GET["to"]))
 
             },
             subtitle: {
-                text: '<?=$node?>'
+                text: '<?=$nodeMac?>'
             },
             xAxis: {
                 type: 'datetime',
