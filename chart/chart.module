@@ -2,20 +2,12 @@
 function chart_show_all(){
 $room = "CTI Room 0.I.1";
 $nodeMac = $_GET["ip"];
-$nodeType = "iSense";
 $nodeUrn = "urn:wisebed:ctitestbed:".$_GET['ip'];
 $capability=array("Luminosity","Temperature");
 $capabilityUrn =array("urn:wisebed:node:capability:light","urn:wisebed:node:capability:temperature");
 $maxRows = 10;
 $unit="(lux)";
 $set_date= 0;
-
-if (isset($_GET['from'])&&isset($_GET["to"]))
-{   $set_date=true;
-    $from = explode("-",$_GET['from']);
-    $to = explode("-",$_GET['to']);
-}
-
 ?>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
