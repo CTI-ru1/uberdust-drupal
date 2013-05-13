@@ -1,6 +1,6 @@
 <?php
 function chart_show_all(){
-$room = "CTI";
+$room = "CTI Room 0.I.1";
 $nodeMac = $_GET["ip"];
 $nodeUrn = "urn:wisebed:ctitestbed:".$_GET['ip'];
 $capability = array("Luminosity","Temperature");
