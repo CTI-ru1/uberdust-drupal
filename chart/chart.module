@@ -1,23 +1,19 @@
 <?php
 function chart_show_all(){
-$room = "CTI Room 0.I.1";
+$room = "CTI";
 $nodeMac = $_GET["ip"];
 $nodeUrn = "urn:wisebed:ctitestbed:".$_GET['ip'];
-$capability=array("Luminosity","Temperature");
+$capability = array("Luminosity","Temperature");
 $capabilityUrn =array("urn:wisebed:node:capability:light","urn:wisebed:node:capability:temperature");
 $maxRows = 10;
 $unit="(lux)";
 $set_date= false;
 ?>
-
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/ jquery/1.7.0/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-
-
-<script type="text/javascript">
+    <script type="text/javascript">
     <?php
         if (isset($_GET['from'])&&isset($_GET["to"]))
         {   $set_date=true;
