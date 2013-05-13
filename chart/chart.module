@@ -7,7 +7,7 @@ $capability=array("Luminosity","Temperature");
 $capabilityUrn =array("urn:wisebed:node:capability:light","urn:wisebed:node:capability:temperature");
 $maxRows = 10;
 $unit="(lux)";
-$set_date= 0;
+$set_date= false;
 ?>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
