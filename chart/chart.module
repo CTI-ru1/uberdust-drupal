@@ -1,6 +1,7 @@
 <?php
 function chart_show_all(){
 $room = "CTI Room 0.I.1";
+if (isset($_GET['ip'])){
 $nodeMac = $_GET["ip"];
 $nodeUrn = "urn:wisebed:ctitestbed:".$_GET['ip'];
 $capability = array("Luminosity","Temperature");
@@ -115,6 +116,7 @@ $set_date= false;
    <? for($i=0;$i<=1;$i++){ ?>
     <div id="container-<?= $nodeMac . '-' . $capability[$i] ?>" style="width: 100%; height: 400px"></div>
 
-   <? }  
+   <? }
+    }// end if
 }//end of function
 
