@@ -1,122 +1,184 @@
 <?php
 function chart_show_all(){
-$room = "CTI Room 0.I.1";
-if (isset($_GET['ip'])){
-$nodeMac = $_GET["ip"];
-$nodeUrn = "urn:wisebed:ctitestbed:".$_GET['ip'];
-$capability = array("Luminosity","Temperature");
-$capabilityUrn =array("urn:wisebed:node:capability:light","urn:wisebed:node:capability:temperature");
-$maxRows = 10;
-$unit="(lux)";
-$set_date= false;
-?>
+
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/ jquery/1.7.0/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript">
     <?php
-        if (isset($_GET['from'])&&isset($_GET["to"]))
-        {   $set_date=true;
+    if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
+        $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
+        $nodeUrn=$nodeUrn1[1];
+        $temp =explode(":",$nodeUrn);
+        $nodeMac=$temp[4];
+        $capability=$_GET["capabilities"];
+        $capabilityUrn="urn:wisebed:node:".$nodeMac."capability:".$capability;
+
+        $room = "CTI Room 0.I.1";
+        $nodeType = "iSense";
+        $maxRows = 10;
+        $unit="(lux)";
+        $set_date= false;
+        echo 'console.log("http://uberdust.cti.gr/rest/testbed/1/node/'.$nodeUrn.'/capability/'.$capabilityUrn.'/tabdelimited/limit/'.$maxRows.'");';
+      //  echo "document.getElementById('container').style='width: 100%; height: 400px';";
+
+
+         if (isset($_GET['from'])&&isset($_GET["to"])){
+            $set_date=true;
             $from = explode("-",$_GET['from']);
             $to =explode("-",$_GET['to']);
             $date_from = mktime($from[3],$from[4],$from[5],$from[1],$from[2],$from[0])*1000;
             $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
-        }
+         }
+    ?>
+        var chart;
 
-     ?>
-  <? for ($i=0;$i<=1;$i++){ ?>
-    var chart;
-
-
-
-  $(document).ready(function() {
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'container-<?= $nodeMac . '-' . $capability[$i] ?>',
-                defaultSeriesType: 'spline',
-                zoomType: 'x',
-                spacingRight: 20
-            },
-            title: {
-                text: '<?=$capability[$i]?> chart inside <?= $room?>'
-
-            },
-            subtitle: {
-                text: '<?=$nodeMac?>'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    day: '%e %b',
-                    month: '%e %b'
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container',
+                    defaultSeriesType: 'spline',
+                    zoomType: 'x',
+                    spacingRight: 20
                 },
-                tickPixelInterval: 400,
-                maxZoom: 1000
-            },
-            yAxis: {
                 title: {
-                    text: '<?= $capability[$i]." ".$unit ?>'
+                    text: '<?=$capability?> chart inside <?= $room?>'
+
                 },
-                min: 0.6,
-                startOnTick: false,
-                showFirstLabel: false
-            },
-            tooltip: {
-                shared: true
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    lineWidth: 1,
-                    marker: {
-                        enabled: false,
-                        states: {
-                            hover: {
-                                enabled: true,
-                                radius: 5
+                subtitle: {
+                    text: '<?=$nodeMac?>'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        day: '%e %b',
+                        month: '%e %b'
+                    },
+                    tickPixelInterval: 400,
+                    maxZoom: 1000
+                },
+                yAxis: {
+                    title: {
+                        text: '<?= $capability." ".$unit ?>'
+                    },
+                    min: 0.6,
+                    startOnTick: false,
+                    showFirstLabel: false
+                },
+                tooltip: {
+                    shared: true
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        lineWidth: 1,
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 5
+                                }
                             }
                         }
                     }
-                }
-            },
-            series: [
-                {
-                    name: '<?= $capability[$i] ?> reading <?= $unit?>',
-                    data: [
-                        <?
-                        if($set_date==1){
-                            $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodeUrn."/capability/".$capabilityUrn[$i]."/tabdelimited/from/".$date_from."/to/".$date_to."/");
-                        }else
-                        {
-                            $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodeUrn."/capability/".$capabilityUrn[$i]."/tabdelimited/limit/".$maxRows);
-                        }
-                        $lines = explode("\n", $tabdelimited);
-                        unset($lines[count($lines)-1]);
+                },
+                series: [
+                    {
+                        name: '<?= $capability?> reading <?= $unit?>',
+                        data: [
+                            <?
+                            if($set_date==1){
+                                $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodeUrn."/capability/".$capabilityUrn."/tabdelimited/from/".$date_from."/to/".$date_to."/");
+                            }else
+                            {
+                                $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodeUrn."/capability/".$capabilityUrn."/tabdelimited/limit/".$maxRows);
+                            }
+                            $lines = explode("\n", $tabdelimited);
+                            unset($lines[count($lines)-1]);
 
-                        $firstRow = explode("\t", $lines[0]);
-                        print("         [".$firstRow[0]." , ".$firstRow[1]."]");
-                        unset($lines[0]);
+                            $firstRow = explode("\t", $lines[0]);
+                            print("         [".$firstRow[0]." , ".$firstRow[1]."]");
+                            unset($lines[0]);
 
-                        foreach ($lines as $thisLine) {
-                          $row = explode("\t", $thisLine);
+                            foreach ($lines as $thisLine) {
+                              $row = explode("\t", $thisLine);
 
-                          print(",\n                                 [".$row[0]." , ".$row[1]."]");
-                        }
-                        ?>
-                    ]
-                }
-            ]
+                              print(",\n                                 [".$row[0]." , ".$row[1]."]");
+                            }
+                            ?>
+                        ]
+                    }
+                ]
+            });
         });
-    });
-<?  } ?>
-</script>
-   <? for($i=0;$i<=1;$i++){ ?>
-    <div id="container-<?= $nodeMac . '-' . $capability[$i] ?>" style="width: 100%; height: 400px"></div>
 
-   <? }
-    }// end if
+
+   <?php
+    }//// end of  if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0"))
+
+	$raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/raw");
+    $nodes = explode("\n",$raw);
+
+    ?>
+    var capability= new Array();
+    var cap = new Array();
+    var opt= new Array();
+    <?php
+        for($i=0;$i<sizeof($nodes);$i++){    //gia kathe node
+            $raws[$i]=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodes[$i]."/capabilities");
+            $line=explode("\n",$raws[$i]);
+           echo 'capability['.$i.'+1]="';
+           for($k=0;$k<sizeof($line);$k++){
+               $nodecap = explode(":",$line[$k]);
+                if ($nodecap[0]== "urn"){
+                    echo $nodecap[4].' ';
+                }
+            }
+            echo '";';
+        }
+    ?>
+
+        function showCapabilities(str)
+        {
+            opt= document.getElementById("nodes").value.split("+");
+            option= opt[0];
+            if(option =="0"){
+                document.capform.capabilities.options[0]=new Option("Select capability:","0");
+                document.capform.capabilities.options.length=1;
+            }else{
+
+                document.capform.capabilities.options[0]=new Option("Select capability:","0");
+                cap=capability[option].split(" ");
+                num=cap.length;
+                console.log(cap);
+                for(i=0;i<num;i++){
+                     document.capform.capabilities.options[i+1]=new Option(cap[i], cap[i]);
+                }
+                    document.capform.capabilities.options.length=num;
+            }
+        }
+
+    </script>
+
+<form name = "capform" action="form.php" method="get"  accept-charset="utf-8">
+    <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
+        <option value="0">Select Node:</option>
+        <? echo sizeof($nodes);?>
+        <? for($i=1;$i<=sizeof($nodes);$i++){ ?>
+        <option value="<?echo $i."+".$nodes[$i-1];?>"><?echo $nodes[$i-1];?></option>
+        <?  }   ?>
+    </select>
+    <select name= "capabilities">
+        <option value="0">Select Capability:</option>
+    </select><br><br>
+    <input type="submit" value="Show chart">
+</form>
+
+    <div id="container"></div>
+
+<?php
 }//end of function
 
