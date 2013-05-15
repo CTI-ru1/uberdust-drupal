@@ -141,6 +141,7 @@ function chart_show_all(){
         {
             opt= document.getElementById("nodes").value.split("+");
             option= opt[0];
+            console.log("change node");
             if(option =="0"){
                 document.capform.capabilities.options[0]=new Option("Select capability:","0");
                 document.capform.capabilities.options.length=1;
