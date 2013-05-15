@@ -118,20 +118,23 @@ function chart_show_all(){
     var cap = new Array();
     var opt= new Array();
     <?php
-        $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/raw");
-        $nodes = explode("\n",$raw);
-        for($i=0;$i<sizeof($nodes);$i++){    //gia kathe node
-            $raws[$i]=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodes[$i]."/capabilities");
-            $line=explode("\n",$raws[$i]);
-           echo 'capability['.$i.'+1]="';
-           for($k=0;$k<sizeof($line);$k++){
-               $nodecap = explode(":",$line[$k]);
-                if ($nodecap[0]== "urn"){
-                    echo $nodecap[4].' ';
-                }
+        $nodes=[];
+        $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
+        $lines= explode("\n",$raw);
+        $k=0;
+        for($i=0;$i<sizeof($lines);$i++)
+
+            $node=explode("\t",$lines);
+            if(!in_array($node[0],$nodes)){
+                $nodes[$k]=$node[0];
+                echo 'capability['.$i.'+1]="';
+            }
+            $nodecap = explode(":",$nodes[$i]);
+            if ($nodecap[0]== "urn"){
+                echo $nodecap[4].' ';
             }
             echo '";';
-        }
+
     ?>
 
         function showCapabilities(str)
