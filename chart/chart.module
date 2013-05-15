@@ -118,7 +118,7 @@ function chart_show_all(){
     var cap = new Array();
     var opt= new Array();
     <?php
-        $nodes=[];
+        
         $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
         $lines= explode("\n",$raw);
         $k=0;
