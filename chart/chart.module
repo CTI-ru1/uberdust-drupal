@@ -148,7 +148,6 @@ function chart_show_all(){
                 document.capform.capabilities.options[0]=new Option("Select capability:","0");
                 cap=capability[option].split(" ");
                 num=cap.length;
-                console.log(cap);
                 for(i=0;i<num;i++){
                      document.capform.capabilities.options[i+1]=new Option(cap[i], cap[i]);
                 }
