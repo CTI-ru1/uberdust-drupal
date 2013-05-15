@@ -128,8 +128,9 @@ function chart_show_all(){
             if(!in_array($node[0],$nodes)){
                 $nodes[$k]=$node[0];
                 echo 'capability['.$i.'+1]="';
+		$k++;
             }
-            $nodecap = explode(":",$nodes[$i]);
+            $nodecap = explode(":",$nodes[$k-1]);
             if ($nodecap[0]== "urn"){
                 echo $nodecap[4].' ';
             }
