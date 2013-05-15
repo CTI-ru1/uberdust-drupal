@@ -10,7 +10,6 @@ function chart_show_all(){
         $capabilityUrn="urn:wisebed:node:".$nodeMac."capability:".$capability;
 
         $room = "CTI Room 0.I.1";
-        $nodeType = "iSense";
         $maxRows = 10;
         $unit="(lux)";
         $set_date= false;
@@ -27,8 +26,7 @@ function chart_show_all(){
     ?>
         <script type="text/javascript">
         var chart;
-
-        $(document).ready(function() {
+        $(function drawChart(){
             chart = new Highcharts.Chart({
                 chart: {
                     renderTo: 'container',
