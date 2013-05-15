@@ -1,6 +1,6 @@
 <?php
 function chart_show_all(){
-    <script type="text/javascript">
+
     if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
         $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
         $nodeUrn=$nodeUrn1[1];
@@ -14,8 +14,7 @@ function chart_show_all(){
         $maxRows = 10;
         $unit="(lux)";
         $set_date= false;
-        echo 'console.log("http://uberdust.cti.gr/rest/testbed/1/node/'.$nodeUrn.'/capability/'.$capabilityUrn.'/tabdelimited/limit/'.$maxRows.'");';
-      //  echo "document.getElementById('container').style='width: 100%; height: 400px';";
+
 
 
          if (isset($_GET['from'])&&isset($_GET["to"])){
@@ -26,6 +25,7 @@ function chart_show_all(){
             $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
          }
     ?>
+        <script>
         var chart;
 
         $(document).ready(function() {
