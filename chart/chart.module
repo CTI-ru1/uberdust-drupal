@@ -113,15 +113,13 @@ function chart_show_all(){
 
    <?php
     }//// end of  if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0"))
-
-	$raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/raw");
-    $nodes = explode("\n",$raw);
-
     ?>
     var capability= new Array();
     var cap = new Array();
     var opt= new Array();
     <?php
+        $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/raw");
+        $nodes = explode("\n",$raw);
         for($i=0;$i<sizeof($nodes);$i++){    //gia kathe node
             $raws[$i]=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$nodes[$i]."/capabilities");
             $line=explode("\n",$raws[$i]);
