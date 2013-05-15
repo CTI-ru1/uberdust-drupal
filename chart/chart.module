@@ -1,7 +1,6 @@
 <?php
 function chart_show_all(){
     <script type="text/javascript">
-    <?php
     if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
         $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
         $nodeUrn=$nodeUrn1[1];
