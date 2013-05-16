@@ -116,25 +116,26 @@ function chart_show_all(){
     var capability= new Array();
     var cap = new Array();
     var opt= new Array();
+
     <?php
         $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
         $lines= explode("\n",$raw);
         $k=0;
         $nodes=array();
-        for($i=0;$i<sizeof($lines);$i++)
-
+        for($i=0;$i<sizeof($lines);$i++){
             $node=explode("\t",$lines[$i]);
             if(!in_array($node[0],$nodes)){
                 $nodes[$k]=$node[0];
-                echo 'capability['.$i.'+1]="';
-		$k++;
+                echo 'capability['.$k.'+1]="';
+
+                $k++;
             }
             $nodecap = explode(":",$nodes[$k-1]);
             if ($nodecap[0]== "urn"){
                 echo $nodecap[4].' ';
             }
             echo '";';
-
+        }
     ?>
 
         function showCapabilities(str)
@@ -158,7 +159,7 @@ function chart_show_all(){
 
     </script>
 
-<form name = "capform" action="form.php" method="get"  accept-charset="utf-8">
+<form name = "capform" action="charts" method="get"  accept-charset="utf-8">
     <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
         <option value="0">Select Node:</option>
         <? echo sizeof($nodes);?>
