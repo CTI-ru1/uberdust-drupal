@@ -3,7 +3,7 @@ function chart_show_all(){ ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script type="text/javascript">
         <?php
-   submit();
+
     function submit(){
 
 
@@ -118,6 +118,7 @@ function chart_show_all(){ ?>
         <?php
          }//// end of  if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0"))
          }//end of submit()
+            submit();
          ?>
         var capability= new Array();
         var cap = new Array();
