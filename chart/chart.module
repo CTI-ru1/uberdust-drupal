@@ -197,8 +197,6 @@ function chart_show_all(){ ?>
 
     </script>
 
-    </head>
-    <body>
 <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8">
     <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
         <option value="0">Select Node:</option>
