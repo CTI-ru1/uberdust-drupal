@@ -95,8 +95,8 @@ $unit = "(lux)";
     for($j=1; $j<=$count; $j++){
     $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
     $nodetype= explode(" ", $nodetab);
-    if($nodetype[1]=="powerstrip"){$max[$i]=1500;}
-    else {$max[$j]=20000;}
+    if($nodetype[1]=="powerstrip"){$max=1500;$red=1200; $yellow=800; }
+    else {$max=20000; $red=16000; $yellow=12000;}
     ?>
 
 
@@ -160,7 +160,7 @@ $unit = "(lux)";
                 // the value axis
                 yAxis: {
                     min: 0,
-                    max: <?php echo $max[$j];?>,
+                    max: <?php echo $max;?>,
                     minorTickInterval: 'auto',
                     minorTickWidth: 1,
                     minorTickLength: 10,
@@ -185,15 +185,15 @@ $unit = "(lux)";
                         color: '#A9A9A9	' // grey
                     },{
                         from: 70,
-                        to: 800,
+                        to: <?php echo $yellow;?>,
                         color: '#55BF3B' // green
                     }, {
-                        from: 800,
-                        to:1200 ,
+                        from: <?php echo $yellow;?>,
+                        to: <?php echo $red;?>,
                         color: '#DDDF0D' // yellow
                     }, {
-                        from: 1200,
-                        to: 1500,
+                        from: <?php echo $red;?>,
+                        to: <?php echo $max;?>,
                         color: '#DF5353' // red
                     }]
                 },
