@@ -142,6 +142,7 @@ function chart_show_all(){ ?>
                 unset($node);
                 if ((isset($nodecap[4])==1)&&($nodecap[0]== "urn")){
                     echo $nodecap[4].' ';
+                    unset($nodecap);
                 }
             }
             echo '";';
