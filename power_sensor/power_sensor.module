@@ -14,11 +14,11 @@ $unit = "(lux)";
 	if(empty($_GET['ip'])){	
 		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
 		$line = explode("\n", $status_raw);
+        echo ' <p>Choose one of the available power strips:</p> ';
 		for($i=0; $i<sizeof($line); $i++){
 			$nodetype= explode("\t", $line[$i]);		
 			if(isset($nodetype[3])&& (($nodetype[3]=="powerstrip")||($nodetype[3]=="powersensor"))){
 				$node=explode(":", $nodetype[0]);
-                echo ' <p>Choose one of the available power strips:</p> ';
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[3].'">'.$nodetype[0].'</a></p>';
 			}	
 		}			
