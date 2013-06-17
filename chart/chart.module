@@ -193,8 +193,8 @@ function chart_show_all(){ ?>
 <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8">
     <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
         <option value="0">Select Node:</option>
-        <? echo sizeof($nodes);?>
-        <? for($i=1;$i<=sizeof($nodes);$i++){ ?>
+
+        <? for($i=1;$i< sizeof($nodes);$i++){ ?>
             <option value="<?echo $i."+".$nodes[$i-1];?>"><?echo $nodes[$i-1];?></option>
         <?  }   ?>
     </select>
