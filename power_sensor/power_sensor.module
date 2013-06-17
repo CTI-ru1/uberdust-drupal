@@ -93,6 +93,10 @@ $unit = "(lux)";
     <?php
      $count=$j;
     for($j=1; $j<=$count; $j++){
+    $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
+    $nodetype= explode(" ", $nodetab);
+    if($nodetype[1]=="powerstrip"){$max[$i]=1500;}
+    else {$max[$j]=20000;}
     ?>
 
 
@@ -156,8 +160,7 @@ $unit = "(lux)";
                 // the value axis
                 yAxis: {
                     min: 0,
-                    max: 1500,
-
+                    max: <?php echo $max[$j];?>,
                     minorTickInterval: 'auto',
                     minorTickWidth: 1,
                     minorTickLength: 10,
