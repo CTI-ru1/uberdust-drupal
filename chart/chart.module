@@ -136,7 +136,9 @@ function chart_show_all(){ ?>
                     echo 'capability['.$k.'+1]="';
                     $k++;
                 }
-                $nodecap = explode(":",$node[1]);
+                if (isset($node[1])==1){
+                    $nodecap = explode(":",$node[1]);
+                }
                 unset($node);
                 if ((isset($nodecap[4])==1)&&($nodecap[0]== "urn")){
                     echo $nodecap[4].' ';
