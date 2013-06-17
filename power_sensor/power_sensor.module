@@ -299,9 +299,9 @@ for($j=1;$j<=$count;$j++){
                                 }
                         echo "</td></tr>";
                         echo "<tr><td>";
-                                 if($indicator[$i]==0.0)
+                                 if(isset($indicator[$i])&& $indicator[$i]==0.0)
                                      echo "<img id='led".$i."' src='/uberdust/sites/all/images/sensors/led-off-md.png' alt='off' width='65' height='65'>";
-                                 elseif($indicator[$i]==1.0)
+                                 elseif(isset($indicator[$i])&& $indicator[$i]==1.0)
                                      echo "<img id='led".$i."' src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='65' height='65'>";
                         echo "</td></tr>";
                         echo "</tr></table>";
