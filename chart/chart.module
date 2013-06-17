@@ -19,10 +19,10 @@ function chart_show_all(){ ?>
         $unit="(lux)";
         $set_date= false;
 
-         if (isset($_GET['from'])&&isset($_GET["to"])){
+         if (isset($_GET['from'])&&isset($_GET['to'])){
             $set_date=true;
-            $from = explode("-",$_GET['from']);
-            $to =explode("-",$_GET['to']);
+            $from = explode('-',urldecode($_GET['from']));
+            $to =explode('-',urldecode($_GET['to']));
             $date_from = mktime($from[3],$from[4],$from[5],$from[1],$from[2],$from[0])*1000;
             $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
          }
@@ -170,6 +170,9 @@ function chart_show_all(){ ?>
         {   nodes=document.getElementById("nodes").value;
             capabilities=document.getElementById("capabilities").value;
             submit=document.getElementById("submit").value;
+            from= document.getElementById("from").value;
+            to= document.getElementById("to").value;
+
             var xmlhttp;
             if (window.XMLHttpRequest)
             {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -186,7 +189,7 @@ function chart_show_all(){ ?>
                     document.getElementById("container").innerHTML=xmlhttp.responseText;
                 }
             }
-            xmlhttp.open("GET","chart.php?t=" + Math.random()+"&node="+nodes+"&capabilities="+capabilities,true);
+            xmlhttp.open("GET","chart.php?t=" + Math.random()+"&node="+nodes+"&capabilities="+capabilities+"&from="+from+"&to="+to,true);
             xmlhttp.send();
 
         }
@@ -203,8 +206,12 @@ function chart_show_all(){ ?>
     </select>
     <select id="capabilities" name= "capabilities">
         <option value="0">Select Capability:</option>
-    </select><br><br>
+    </select>
+    From: <input id ="from" type="text" name="from" placeholder="2013-06-17-10-00-00">
+    To:   <input id ="to" type="text" name="to" placeholder="2013-06-17-12-00-00"><br><br>
+    <br><br>
     <input type="submit" id="submit" value="Show Chart" onClick="JavaScript:onSubmit()">
+    <br><br>
 </form>
 
 <div id="container"></div>
