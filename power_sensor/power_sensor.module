@@ -40,8 +40,8 @@ $unit = "(lux)";
         $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
         $j=0;
-    $k=0;
-    $c=0;
+        $k=0;
+        $c=0;
         for($i=0; $i<sizeof($line); $i++){
         if(substr($line[$i],-1,1)=="i"){
                  $c++;
@@ -78,7 +78,7 @@ $unit = "(lux)";
 
 
     <?php echo "current[$j] = $firstRow[1];";
-    $current[$j]=$firstRow[1];?>
+        $current[$j]=$firstRow[1];?>
     //<?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
     //<?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
     //<?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
@@ -95,8 +95,9 @@ $unit = "(lux)";
     for($j=1; $j<=$count; $j++){
     $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
     $nodetype= explode(" ", $nodetab);
+    echo 'console.log("'.$nodetab.'")';
     if(isset($nodetype[1])&&($nodetype[1]=="powerstrip")){$max=1500;$red=1200; $yellow=800; }
-    elseif(isset($nodetype[1])&&($nodetype[1]=="powersensor")) {$max=20000; $red=16000; $yellow=12000;}
+    elseif(isset($nodetype[1])&&($nodetype[1]=="powersensor")){$max=20000; $red=16000; $yellow=12000;}
     unset($nodetype);
     ?>
 
