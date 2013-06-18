@@ -11,8 +11,7 @@ function chart_show_all(){ ?>
         $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
         $nodeUrn=$nodeUrn1[1];
         $temp =explode(":",$nodeUrn);
-        echo "console.log('".$nodeUrn."');";
-        $nodeMac=$temp[4];
+        $nodeMac=$temp[3];
         $capability=$_GET["capabilities"];
         $capabilityUrn="urn:wisebed:node:".$nodeMac."capability:".$capability;
         $room = "CTI Room 0.I.1";
