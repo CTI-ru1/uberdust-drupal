@@ -37,12 +37,10 @@ function chart_show_all(){ ?>
                     spacingRight: 20
                 },
                 title: {
-                    text: '<?=$capability?> chart inside <?= $room?>'
+                    text: '<?=$capability?> chart inside <?=$nodeMac?>'
 
                 },
-                subtitle: {
-                    text: '<?=$nodeMac?>'
-                },
+
                 xAxis: {
                     title: {
                         text: 'GMT'
