@@ -231,41 +231,47 @@ $unit = "(lux)";
     } // end for loop (drawchart)
 
 for($j=1;$j<=$count;$j++){
-    ?>
-        connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:".$_GET['ip'] , "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
-            var val= new Array();
-            var capability=" ";
-            val=value2add.split(" ");
-            capability=val[1].split(":");
-            id=capability[4].split("");
-            window.current[id[0]]=val[8];
-        });
-        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'] ,"urn:wisebed:node:capability:<?php echo $j?>i",function(value2add){
-            var val= new Array();
-            var capability=" ";
-            val=value2add.split(" ");
-            capability=val[1].split(":");
-            id=capability[4].split("");
-            if(val[8]==1.0){
-                 document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
-            }else{
-                 document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
-            }
-        });
-        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'],"urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
-            var val= new Array();
-            var capability=" ";
-            val=value2add.split(" ");
-            capability=val[1].split(":");
-            id=capability[4].split("");
-            if(val[8]==1.0){
-                document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
-            }else{
-                document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch0.png";
-            }
-        });
-    <?php
+    ?> 
+            connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:".$_GET['ip'] , "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
+                var val= new Array();
+                var capability=" ";
+                val=value2add.split(" ");
+                capability=val[1].split(":");
+                id=capability[4].split("");
+                window.current[id[0]]=val[8];
+            });
+        <?
+        if(isset($indicator[$j])){ ?>
+            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'] ,"urn:wisebed:node:capability:<?php echo $j?>i",function(value2add){
+                var val= new Array();
+                var capability=" ";
+                val=value2add.split(" ");
+                capability=val[1].split(":");
+                id=capability[4].split("");
+                if(val[8]==1.0){
+                     document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
+                }else{
+                     document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
+                }
+            });
+  <?php }
+       if(isset($status[$j])){ ?>
+            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'],"urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+                var val= new Array();
+                var capability=" ";
+                val=value2add.split(" ");
+                capability=val[1].split(":");
+                id=capability[4].split("");
+                if(val[8]==1.0){
+                    document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
+                }else{
+                    document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch0.png";
+                }
+            });
+        <?php
+
         }
+    }
       ?>
     //
 
