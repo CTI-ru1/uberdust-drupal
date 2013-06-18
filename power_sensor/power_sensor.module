@@ -95,8 +95,9 @@ $unit = "(lux)";
     for($j=1; $j<=$count; $j++){
     $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
     $nodetype= explode(" ", $nodetab);
-    if($nodetype[1]=="powerstrip"){$max=1500;$red=1200; $yellow=800; }
+    if(isset($nodetype[1])&&($nodetype[1]=="powerstrip")){$max=1500;$red=1200; $yellow=800; }
     else {$max=20000; $red=16000; $yellow=12000;}
+    unset($nodetype);
     ?>
 
 
@@ -231,7 +232,7 @@ $unit = "(lux)";
 
 for($j=1;$j<=$count;$j++){
     ?>
-        connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:150.140.5.67", "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
+        connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:".$_GET['ip'] , "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
             var val= new Array();
             var capability=" ";
             val=value2add.split(" ");
@@ -239,7 +240,7 @@ for($j=1;$j<=$count;$j++){
             id=capability[4].split("");
             window.current[id[0]]=val[8];
         });
-        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>i",function(value2add){
+        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'] ,"urn:wisebed:node:capability:<?php echo $j?>i",function(value2add){
             var val= new Array();
             var capability=" ";
             val=value2add.split(" ");
@@ -251,7 +252,7 @@ for($j=1;$j<=$count;$j++){
                  document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-off-md.png";
             }
         });
-        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:150.140.5.67","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+        connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'],"urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
             var val= new Array();
             var capability=" ";
             val=value2add.split(" ");
