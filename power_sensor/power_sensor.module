@@ -95,7 +95,7 @@ $unit = "(lux)";
     for($j=1; $j<=$count; $j++){
     $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
     $nodetype= explode(" ", $nodetab);
-    echo 'console.log("'.$nodetab.'")';
+    echo 'console.log("'.$nodetype[1].'");';
     if(isset($nodetype[1])&&($nodetype[1]=="powerstrip")){$max=1500;$red=1200; $yellow=800; }
     elseif($nodetype[1]=="powersensor"){$max=20000; $red=16000; $yellow=12000;}
     unset($nodetype);
