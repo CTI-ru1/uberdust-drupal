@@ -97,7 +97,7 @@ $unit = "(lux)";
     $nodetype= explode(" ", $nodetab);
     echo 'console.log("'.$nodetab.'")';
     if(isset($nodetype[1])&&($nodetype[1]=="powerstrip")){$max=1500;$red=1200; $yellow=800; }
-    elseif(isset($nodetype[1])&&($nodetype[1]=="powersensor")){$max=20000; $red=16000; $yellow=12000;}
+    elseif($nodetype[1]=="powersensor"){$max=20000; $red=16000; $yellow=12000;}
     unset($nodetype);
     ?>
 
