@@ -231,8 +231,8 @@ $unit = "(lux)";
     } // end for loop (drawchart)
 
 for($j=1;$j<=$count;$j++){
-    ?> 
-            connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:".$_GET['ip'] , "urn:wisebed:node:capability:<?php echo $j?>s",function(value2add){
+    ?>
+            connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:"<?php echo $_GET['ip'];?> , "urn:wisebed:node:capability:<?php echo $j;?>s",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -242,7 +242,7 @@ for($j=1;$j<=$count;$j++){
             });
         <?
         if(isset($indicator[$j])){ ?>
-            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'] ,"urn:wisebed:node:capability:<?php echo $j?>i",function(value2add){
+            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:"<?php echo $_GET['ip'];?> ,"urn:wisebed:node:capability:<?php echo $j;?>i",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -256,7 +256,7 @@ for($j=1;$j<=$count;$j++){
             });
   <?php }
        if(isset($status[$j])){ ?>
-            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:".$_GET['ip'],"urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:"<?php echo $_GET['ip'];?>,"urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
