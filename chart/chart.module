@@ -44,6 +44,9 @@ function chart_show_all(){ ?>
                     text: '<?=$nodeMac?>'
                 },
                 xAxis: {
+                    title: {
+                        text: 'GMT'
+                    },
                     type: 'datetime',
                     dateTimeLabelFormats: {
                         day: '%e %b',
