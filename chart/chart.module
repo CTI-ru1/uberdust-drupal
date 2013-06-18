@@ -13,7 +13,7 @@ function chart_show_all(){ ?>
         $temp =explode(":",$nodeUrn);
         $nodeMac=$temp[3];
         $capability=$_GET["capabilities"];
-        $capabilityUrn="urn:wisebed:node:".$nodeMac."capability:".$capability;
+        $capabilityUrn="urn:wisebed:node:".$nodeMac."/capability:".$capability;
         $room = "CTI Room 0.I.1";
         $maxRows = 10;
         $unit="(lux)";
