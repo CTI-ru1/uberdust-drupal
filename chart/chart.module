@@ -5,15 +5,13 @@ function chart_show_all(){ ?>
         <?php
 
     function submit(){
-
-
-    if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
+   if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
         $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
         $nodeUrn=$nodeUrn1[1];
         $temp =explode(":",$nodeUrn);
         $nodeMac=$temp[3];
         $capability=$_GET["capabilities"];
-        $capabilityUrn="urn:wisebed:node:".$nodeMac."/capability:".$capability;
+        $capabilityUrn="urn:wisebed:node:capability:".$capability;
         $room = "CTI Room 0.I.1";
         $maxRows = 10;
         $unit="(lux)";
