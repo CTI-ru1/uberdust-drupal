@@ -17,7 +17,7 @@ function chart_show_all(){ ?>
         $unit="(lux)";
         $set_date= false;
 
-         if (isset($_GET['from'])&&isset($_GET['to'])){
+         if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
             $set_date=true;
             $from = explode('-',urldecode($_GET['from']));
             $to =explode('-',urldecode($_GET['to']));
