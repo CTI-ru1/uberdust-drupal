@@ -1,5 +1,5 @@
 <?php
-function power_sensor_show_all($show_controls){
+function power_sensor_show_all($show_controls,$testbed){
 $room = "CTI Room 0.I.1";
 $node1Mac = "150.140.5.67";
 $node1Type = "iSense";
@@ -12,7 +12,7 @@ $unit = "(lux)";
 
     <?php
 	if(empty($_GET['ip'])){	
-		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
+		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
 		$line = explode("\n", $status_raw);
         echo ' <p>Choose one of the available power strips:</p> ';
 		for($i=0; $i<sizeof($line); $i++){
@@ -37,7 +37,7 @@ $unit = "(lux)";
 
 
     <?php
-        $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
+        $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
         $j=0;
         $k=0;
@@ -46,7 +46,7 @@ $unit = "(lux)";
         if(substr($line[$i],-1,1)=="i"){
                  $c++;
                  $id = substr($line[$i],-2,1);
-                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
+                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
                  $indicator[$c]=$row[1];
 
@@ -54,7 +54,7 @@ $unit = "(lux)";
         if(substr($line[$i],-1,1)=="r"){
                  $k++;
                  $id = substr($line[$i],-2,1);
-                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
+                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
                  $status[$k]=$row[1];
 
@@ -64,7 +64,7 @@ $unit = "(lux)";
               $j++;?>
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
-                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
+                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
                         $lines = explode("\n", $tabdelimited, $maxRows);
                         unset($lines[count($lines) - 1]);
                         $firstRow = explode("\t", $lines[0]);
@@ -93,7 +93,7 @@ $unit = "(lux)";
     <?php
      $count=$j;
     for($j=1; $j<=$count; $j++){
-    $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
+    $nodetab =file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/nodetype/tabdelimited/limit/10");
     $nodetype= explode("\t", $nodetab);
     if(isset($nodetype[1])&&($nodetype[1]=="powerstrip")){$max=1500;$red=1200; $yellow=800; }
     else{$max=20000; $red=16000; $yellow=12000;}
@@ -284,12 +284,12 @@ for($j=1;$j<=$count;$j++){
 			if (status==1.0){
 				window.state[zone]=0.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
-                $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
+                $.post( "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
 			}
 			else{
 				window.state[zone]=1.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
-                $.post( "http://uberdust.cti.gr/rest/testbed/1/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
+                $.post( "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/urn:wisebed:ctitestbed:150.140.5.67/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
 			}
 		}
  </script>
