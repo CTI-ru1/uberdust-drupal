@@ -25,8 +25,12 @@ $unit = "(lux)";
 		}			
 		for ($i=0; i<$count; $i++)
 		{
-			$nodeUrn1 = $nodeUrn1.$node[$i];	
+			$nodeUrn1 = $nodeUrn1.$node[$i];
+			if($i<($count-1)){ 
+				$nodeUrn1 = $nodeUrn1.":";
+			}
 		}
+
 	}
 	else{ ?>
     <script>
