@@ -23,10 +23,10 @@ $unit = "(lux)";
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[$count].'">'.$nodetype[0].'</a></p>';
 			}	
 		}			
-		for ($i=0; i<$count; $i++)
+		for ($i=0; $i<=$count; $i++)
 		{
 			$nodeUrn1 = $nodeUrn1.$node[$i];
-			if($i<($count-1)){ 
+			if($i<$count){
 				$nodeUrn1 = $nodeUrn1.":";
 			}
 		}
