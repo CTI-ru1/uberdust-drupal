@@ -3,7 +3,7 @@ function power_sensor_show_all($show_controls,$testbed){
 $room = "CTI Room 0.I.1";
 $node1Mac = "150.140.5.67";
 $node1Type = "iSense";
-$nodeUrn1 = "urn:wisebed:ctitestbed:";
+$nodeUrn1 = "";
 $capability1 = "Consumption";
 $maxRows = 10;
 $unit = "(lux)";
@@ -23,7 +23,10 @@ $unit = "(lux)";
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[$count].'">'.$nodetype[0].'</a></p>';
 			}	
 		}			
-	
+		for ($i=0; i<$count; $i++)
+		{
+			$nodeUrn1 = $nodeUrn1.$node[$i];	
+		}
 	}
 	else{ ?>
     <script>
