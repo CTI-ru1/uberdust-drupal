@@ -1,13 +1,8 @@
 <?php
 function power_sensor_show_all($show_controls,$testbed){
-$room = "CTI Room 0.I.1";
-$node1Mac = "150.140.5.67";
-$node1Type = "iSense";
-$nodeUrn1 = "";
-$capability1 = "Consumption";
-$maxRows = 10;
-$unit = "(lux)";
-?>
+    $nodeUrn1 = "";
+    $maxRows = 10;
+    ?>
 
 
     <?php
@@ -84,12 +79,6 @@ $unit = "(lux)";
 
     <?php echo "current[$j] = $firstRow[1];";
         $current[$j]=$firstRow[1];?>
-    //<?php echo "max_value[$j] = Math.max.apply(Math, values[$j]);"; ?>
-    //<?php echo "min_value[$j] = Math.min.apply(Math, values[$j]);";?>
-    //<?php echo "if(min_value[".$j."]< minimum){ mimimum = min_value[".$j."];} "; ?>
-    //if(max_value[<?php echo $j;?>]> maximum){ maximum = 2 * max_value[<?php echo $j; ?>];}
-   // if(min_value[<?php echo $j;?>]< minimum){ minimum = min_value[<?php echo $j; ?>];}
-
     <?php
 
         }//end if	==s
@@ -237,7 +226,7 @@ $unit = "(lux)";
 
 for($j=1;$j<=$count;$j++){
     ?>
-            connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:<?php echo $_GET['ip'];?>" , "urn:wisebed:node:capability:<?php echo $j;?>s",function(value2add){
+            connect("uberdust.cti.gr", "<?php echo $nodeUrn1.$_GET['ip'];?>" , "urn:wisebed:node:capability:<?php echo $j;?>s",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -247,7 +236,7 @@ for($j=1;$j<=$count;$j++){
             });
         <?
         if(isset($indicator[$j])){ ?>
-            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:<?php echo $_GET['ip'];?>" ,"urn:wisebed:node:capability:<?php echo $j;?>i",function(value2add){
+            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>" ,"urn:wisebed:node:capability:<?php echo $j;?>i",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -261,7 +250,7 @@ for($j=1;$j<=$count;$j++){
             });
   <?php }
        if(isset($status[$j])){ ?>
-            connect("uberdust.cti.gr","urn:wisebed:ctitestbed:<?php echo $_GET['ip'];?>","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
