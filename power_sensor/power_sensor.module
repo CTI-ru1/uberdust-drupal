@@ -18,8 +18,9 @@ $unit = "(lux)";
 		for($i=0; $i<sizeof($line); $i++){
 			$nodetype= explode("\t", $line[$i]);		
 			if(isset($nodetype[3])&& (($nodetype[3]=="powerstrip")||($nodetype[3]=="powersensor"))){
-				$node=explode(":", $nodetype[0]);
-				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[3].'">'.$nodetype[0].'</a></p>';
+				$node = explode(":", $nodetype[0]);
+				$count = sizeof($node)-1;
+				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[$count].'">'.$nodetype[0].'</a></p>';
 			}	
 		}			
 	
