@@ -62,6 +62,8 @@ function power_sensor_show_all($show_controls,$testbed){
 
             if(substr($line[$i],-1,1)=="s"){
               $j++;?>
+            //////////////////////////////
+    console.log(<? echo "http://uberdust.cti.gr/rest/testbed/". $testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:". $id;?>+ "r/latestreading");
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
                         $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
