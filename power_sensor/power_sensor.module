@@ -316,9 +316,9 @@ for($j=1;$j<=$count;$j++){
                          echo "<tr><td>";
                                 if($show_controls==1){
                                      if(isset($status[$i])&& $status[$i]==0.0)
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.",".$nodeUrn1.",".$_GET['ip'].")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.",'".$nodeUrn1."','".$_GET['ip']."')' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
                                      elseif(isset($status[$i])&& $status[$i]==1.0)
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.",".$nodeUrn1.",".$_GET['ip'].")' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.",'".$nodeUrn1."','".$_GET['ip']."')' id= 'myswitch".$i."' alt='switch' height='80' width='80'/>";
                                 }
                         echo "</td></tr>";
                         echo "<tr><td>";
