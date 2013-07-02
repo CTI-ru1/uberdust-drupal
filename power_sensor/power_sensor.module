@@ -6,18 +6,18 @@ function power_sensor_show_all($show_controls,$testbed){
 
 
     <?php
-	if(empty($_GET['ip'])){	
+	if(empty($_GET['ip'])){
 		$status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
 		$line = explode("\n", $status_raw);
         echo ' <p>Choose one of the available power strips:</p> ';
 		for($i=0; $i<sizeof($line); $i++){
-			$nodetype= explode("\t", $line[$i]);		
+			$nodetype= explode("\t", $line[$i]);
 			if(isset($nodetype[3])&& (($nodetype[3]=="powerstrip")||($nodetype[3]=="powersensor"))){
 				$node = explode(":", $nodetype[0]);
 				$count = sizeof($node)-1;
 				echo  '<p><a href="http://uberdust.cti.gr:81/uberdust/power?ip='.$node[$count].'">'.$nodetype[0].'</a></p>';
-			}	
-		}			
+			}
+		}
 		for ($i=0; $i<$count; $i++)
 		{
 			$nodeUrn1 = $nodeUrn1.$node[$i];
@@ -37,6 +37,25 @@ function power_sensor_show_all($show_controls,$testbed){
 
 
     <?php
+       /* if($testbed==1){
+            $nodeUrn1="urn:wisebed:ctitestbed:";
+         }else{ $nodeUrn1="urn:testing:";} */
+         $status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
+		$line = explode("\n", $status_raw);
+		for($i=0; $i<sizeof($line); $i++){
+			$nodetype= explode("\t", $line[$i]);
+			if(isset($nodetype[3])&& (($nodetype[3]=="powerstrip")||($nodetype[3]=="powersensor"))){
+				$node = explode(":", $nodetype[0]);
+				$count = sizeof($node)-1;
+				break;
+			}
+		}
+		for ($i=0; $i<$count; $i++)
+		{
+			$nodeUrn1 = $nodeUrn1.$node[$i];
+		}
+
+         
         $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
         $j=0;
@@ -63,7 +82,6 @@ function power_sensor_show_all($show_controls,$testbed){
             if(substr($line[$i],-1,1)=="s"){
               $j++;?>
             //////////////////////////////
-    console.log(<? echo "http://uberdust.cti.gr/rest/testbed/". $testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:". $id;?>+ "r/latestreading");
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
                         $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
