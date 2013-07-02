@@ -296,11 +296,13 @@ for($j=1;$j<=$count;$j++){
 				window.state[zone]=0.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
                 $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
+                console.log("http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/0/");
 			}
 			else{
 				window.state[zone]=1.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
                 $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
+                console.log("http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/1/");
 			}
 		}
  </script>
