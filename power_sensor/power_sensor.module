@@ -37,9 +37,6 @@ function power_sensor_show_all($show_controls,$testbed){
 
 
     <?php
-       /* if($testbed==1){
-            $nodeUrn1="urn:wisebed:ctitestbed:";
-         }else{ $nodeUrn1="urn:testing:";} */
          $status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
 		$line = explode("\n", $status_raw);
 		for($i=0; $i<sizeof($line); $i++){
@@ -328,7 +325,7 @@ for($j=1;$j<=$count;$j++){
                                  elseif(isset($indicator[$i])&& $indicator[$i]==1.0)
                                      echo "<img id='led".$i."' src='/uberdust/sites/all/images/sensors/led-on-md.png' alt='on' width='65' height='65'>";
                         echo "</td></tr>";
-                        echo "</tr></table>";
+                        echo "</table>";
                         echo "</td>";
                          echo "<td id='chart_div" . $i . "' style='width: 400px; margin: 0 0 0 0; ' ></td>";
                  echo "</tr>";
