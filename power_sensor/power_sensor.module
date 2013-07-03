@@ -61,8 +61,10 @@ function power_sensor_show_all($show_controls,$testbed){
         for($i=0; $i<sizeof($line); $i++){
         if(substr($line[$i],-1,1)=="i"){
                  $c++;
+                 $capability = substr($line[$i],0,-2 );
+
                  $id = substr($line[$i],-2,1);
-                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
+                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/". $capability . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
                  $indicator[$c]=$row[1];
 
@@ -70,7 +72,7 @@ function power_sensor_show_all($show_controls,$testbed){
         if(substr($line[$i],-1,1)=="r"){
                  $k++;
                  $id = substr($line[$i],-2,1);
-                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "r/latestreading");
+                 $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/". $capability . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
                  $status[$k]=$row[1];
 
@@ -80,7 +82,7 @@ function power_sensor_show_all($show_controls,$testbed){
               $j++;?>
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
-                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/urn:wisebed:node:capability:" . $id . "s/latestreading");///tabdelimited/limit/maxrows
+                        $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/".$capability . $id . "s/latestreading");///tabdelimited/limit/maxrows
                         $lines = explode("\n", $tabdelimited, $maxRows);
                         unset($lines[count($lines) - 1]);
                         $firstRow = explode("\t", $lines[0]);
@@ -242,7 +244,7 @@ function power_sensor_show_all($show_controls,$testbed){
 
 for($j=1;$j<=$count;$j++){
     ?>
-            connect("uberdust.cti.gr", "<?php echo $nodeUrn1.$_GET['ip'];?>" , "urn:wisebed:node:capability:<?php echo $j;?>s",function(value2add){
+            connect("uberdust.cti.gr", "<?php echo $nodeUrn1.$_GET['ip'];?>" ,"<?php echo $capability.$j;?>s",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -252,7 +254,7 @@ for($j=1;$j<=$count;$j++){
             });
         <?
         if(isset($indicator[$j])){ ?>
-            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>" ,"urn:wisebed:node:capability:<?php echo $j;?>i",function(value2add){
+            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>" ,"<?php echo $capability.$j;?>i",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -266,7 +268,7 @@ for($j=1;$j<=$count;$j++){
             });
   <?php }
        if(isset($status[$j])){ ?>
-            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>","urn:wisebed:node:capability:<?php echo $j?>r",function(value2add){
+            connect("uberdust.cti.gr","<?php echo $nodeUrn1.$_GET['ip'];?>","<?php echo $capability.$j?>r",function(value2add){
                 var val= new Array();
                 var capability=" ";
                 val=value2add.split(" ");
@@ -290,16 +292,16 @@ for($j=1;$j<=$count;$j++){
 
 
     //switch onclick
-		function activate(zone,status,testbed,nodeUrn,node){
+		function activate(zone,status,testbed,nodeUrn,node,capability){
 			if (status==1.0){
 				window.state[zone]=0.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch0.png";
-                $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/0/",0);
+                $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/"+capability +zone +"r/0/",0);
 			}
 			else{
 				window.state[zone]=1.0;
 				document.getElementById('myswitch'+zone+'').src="/uberdust/sites/all/images/sensors/newswitch1.png";
-                $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/urn:wisebed:node:capability:" +zone +"r/1/",1);
+                $.post( "http://uberdust.cti.gr/rest/testbed/"+testbed+"/node/"+nodeUrn+node+"/capability/"+capability +zone +"r/1/",1);
 			}
 		}
  </script>
@@ -313,9 +315,9 @@ for($j=1;$j<=$count;$j++){
                          echo "<tr><td>";
                                 if($show_controls==1){
                                      if(isset($status[$i])&& $status[$i]==0.0){
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.","; echo '"'.$nodeUrn1.'","'.$node.'")'; echo "'"; echo " id= 'myswitch".$i."' alt='switch' height='80' width='80'/>"; }
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch0.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.","; echo '"'.$nodeUrn1.'","'.$node.'","'.$capability.'")'; echo "'"; echo " id= 'myswitch".$i."' alt='switch' height='80' width='80'/>"; }
                                      elseif(isset($status[$i])&& $status[$i]==1.0){
-                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.","; echo '"'.$nodeUrn1.'","'.$node.'")'; echo "'"; echo " id= 'myswitch".$i."' alt='switch' height='80' width='80'/>"; }
+                                            echo " <img src='/uberdust/sites/all/images/sensors/newswitch1.png' onclick = 'activate(".$i.",window.state[".$i."],".$testbed.","; echo '"'.$nodeUrn1.'","'.$node.'","'.$capability.'")'; echo "'"; echo " id= 'myswitch".$i."' alt='switch' height='80' width='80'/>"; }
                                 }
                         echo "</td></tr>";
                         echo "<tr><td>";
