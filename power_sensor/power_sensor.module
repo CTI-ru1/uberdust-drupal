@@ -36,8 +36,6 @@ function power_sensor_show_all($show_controls,$testbed){
 
 
     <?php
-        unset($line);
-        unset($node);
          $status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
 		$line = explode("\n", $status_raw);
 		for($i=0; $i<sizeof($line); $i++){
@@ -48,7 +46,7 @@ function power_sensor_show_all($show_controls,$testbed){
 			}
 		}
 		for ($i=0; $i<$count; $i++)
-		{
+		{  echo $node[$i].":";
 			$nodeUrn1 = $nodeUrn1.$node[$i].":";
 		}
 
