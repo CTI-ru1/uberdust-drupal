@@ -71,6 +71,7 @@ function power_sensor_show_all($show_controls,$testbed){
             }
         if(substr($line[$i],-1,1)=="r"){
                  $k++;
+                 $capability = substr($line[$i],0,-2 );
                  $id = substr($line[$i],-2,1);
                  $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/". $capability . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
@@ -80,7 +81,7 @@ function power_sensor_show_all($show_controls,$testbed){
 
             if(substr($line[$i],-1,1)=="s"){
               $j++;
-              $capability = substr($line[$j],0,-2 );?>
+              $capability = substr($line[$i],0,-2 );?>
     values[<?php echo $j;?>] = [<?php
                         $id = substr($line[$i],-2,1);
                         $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/". $nodeUrn1 . $_GET['ip'] . "/capability/".$capability . $id . "s/latestreading");///tabdelimited/limit/maxrows
