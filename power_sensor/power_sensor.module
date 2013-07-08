@@ -37,7 +37,9 @@ function power_sensor_show_all($show_controls,$testbed){
 
     <?php
          $status_raw=file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
+		unset($line);
 		$line = explode("\n", $status_raw);
+
 		for($i=0; $i<sizeof($line); $i++){
 			$nodetype= explode("\t", $line[$i]);
 			if(isset($nodetype[3])&& (($nodetype[3]=="powerstrip")||($nodetype[3]=="powersensor"))){
