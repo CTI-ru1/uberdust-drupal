@@ -22,7 +22,7 @@ function power_sensor_show_all($show_controls,$testbed){
 		{
 			$nodeUrn1 = $nodeUrn1.$node[$i].":";
 		}
-        echo $nodeUrn1;
+        echo "urn".$nodeUrn1;
 	}
 	else{ ?>
     <script>
@@ -50,7 +50,7 @@ function power_sensor_show_all($show_controls,$testbed){
 		{
 			$nodeUrn1 = $nodeUrn1.$node[$i].":";
 		}
-        echo $nodeUrn1;
+        echo "urn".$nodeUrn1;
 
         $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capabilities" );
         $line = explode("\n", $capabilities);
@@ -61,7 +61,6 @@ function power_sensor_show_all($show_controls,$testbed){
         if(substr($line[$i],-1,1)=="i"){
                  $c++;
                  $capability = substr($line[$i],0,-2 );
-
                  $id = substr($line[$i],-2,1);
                  $latestreading= file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $nodeUrn1 . $_GET['ip'] . "/capability/". $capability . $id . "r/latestreading");
                  $row = explode("\t", $latestreading);
