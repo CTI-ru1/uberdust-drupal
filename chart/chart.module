@@ -40,6 +40,9 @@ function chart_show_all(){ ?>
                     text: '<?=$capability?> chart inside <?=$nodeMac?>'
 
                 },
+                credits: {
+                    enabled: false
+                },
 
                 xAxis: {
                     title: {
