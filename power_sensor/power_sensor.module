@@ -258,6 +258,7 @@ for($j=1;$j<=$count;$j++){
                 var count= capability.length;
                 var id= capability[count-1].split("");
                 window.current[id[0]]=val[8];
+                console.log(id[0]+" "+val[8]);
             });
         <?
         if(isset($indicator[$j])){ ?>
