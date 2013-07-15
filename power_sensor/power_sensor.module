@@ -197,9 +197,6 @@ function power_sensor_show_all($show_controls,$testbed){
                     title: {
                         text: 'mA'
                     },
-                    credits: {
-                        enabled: false
-                    },
                     plotBands: [{
                         from: 0,
                         to: 70,
@@ -258,7 +255,8 @@ for($j=1;$j<=$count;$j++){
                 var capability=" ";
                 val=value2add.split(" ");
                 capability=val[1].split(":");
-                id=capability[4].split("");
+                var count= capability.length;
+                var id= capability[count-1].split("");
                 window.current[id[0]]=val[8];
             });
         <?
@@ -268,7 +266,8 @@ for($j=1;$j<=$count;$j++){
                 var capability=" ";
                 val=value2add.split(" ");
                 capability=val[1].split(":");
-                id=capability[4].split("");
+                var count= capability.length;
+                var id= capability[count-1].split("");
                 if(val[8]==1.0){
                      document.getElementById("led"+id[0]).src="/uberdust/sites/all/images/sensors/led-on-md.png";
                 }else{
@@ -282,7 +281,8 @@ for($j=1;$j<=$count;$j++){
                 var capability=" ";
                 val=value2add.split(" ");
                 capability=val[1].split(":");
-                id=capability[4].split("");
+                var count= capability.length;
+                var id= capability[count-1].split("");
                 if(val[8]==1.0){
                     document.getElementById("myswitch"+id[0]).src="/uberdust/sites/all/images/sensors/newswitch1.png";
                 }else{
