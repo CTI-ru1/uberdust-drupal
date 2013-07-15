@@ -197,6 +197,9 @@ function power_sensor_show_all($show_controls,$testbed){
                     title: {
                         text: 'mA'
                     },
+                    credits: {
+                        enabled: false
+                    },
                     plotBands: [{
                         from: 0,
                         to: 70,
@@ -222,7 +225,8 @@ function power_sensor_show_all($show_controls,$testbed){
                     tooltip: {
                         valueSuffix: ' mA'
                     }
-                }]
+                }],
+                exporting: { enabled: false }
             },
             // Add some life
             function (chart<?php echo $j;?>){
