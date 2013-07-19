@@ -1,12 +1,11 @@
 <?php
 function chart_show_all(){ ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script type="text/javascript">
+
         <?php
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
          $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
          $nodeUrn=$nodeUrn1[1];
-         $temp =explode(":",$nodeUrn);
          $capability=$_GET["capabilities"];
          $capabilityUrn="urn:wisebed:node:capability:".$capability;
 
@@ -21,6 +20,7 @@ function chart_show_all(){ ?>
          }
       }//end if
         ?>
+    <script type="text/javascript">
         var capability= new Array();
         var cap = new Array();
         var opt= new Array();
@@ -116,8 +116,6 @@ function chart_show_all(){ ?>
     <input type="submit" id="submit" value="Show Chart" onClick="JavaScript:onSubmit()">
     <br><br>
 </form>
-
-<div id="container"></div>
 <?php
 }//end of function
 
