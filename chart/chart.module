@@ -118,7 +118,7 @@ function chart_show_all($testbed){ ?>
 <?php
 }//end of function
 
-function chart_graph($testbed,$node,$capability,$from,$to){
+function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
     $node_prefix="";
     $cap_prefix="";
     $temp_node  =explode(":",$node);
@@ -137,7 +137,7 @@ function chart_graph($testbed,$node,$capability,$from,$to){
         $(document).ready(function() {
             chart = new Highcharts.Chart({
                 chart: {
-                    renderTo: '<?php echo $node_prefix.$node."_".$cap_prefix.$capability;?>',
+                    renderTo: '<?php echo $div_name;?>',
                     defaultSeriesType: 'spline',
                     zoomType: 'x',
                     spacingRight: 20
@@ -225,7 +225,7 @@ function chart_graph($testbed,$node,$capability,$from,$to){
         });
     </script>
 
-    <div id="<?php echo $node_prefix.$node."_".$cap_prefix.$capability;?>"></div><br><br>
+
 
 <?php
 }//end of graph()
