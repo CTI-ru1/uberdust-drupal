@@ -2,24 +2,6 @@
 function chart_show_all(){ ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 
-    <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8">
-        <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
-            <option value="0">Select Node:</option>
-
-            <? for($i=1;$i< sizeof($nodes);$i++){ ?>
-                <option value="<?echo $i."+".$nodes[$i-1];?>"><?echo $nodes[$i-1];?></option>
-            <?  }   ?>
-        </select>
-        <select id="capabilities" name= "capabilities">
-            <option value="0">Select Capability:</option>
-        </select>
-        From: <input id ="from" type="text" name="from" placeholder="2013-06-17-10-00-00">
-        To:   <input id ="to" type="text" name="to" placeholder="2013-06-17-12-00-00"><br><br>
-        <br><br>
-        <input type="submit" id="submit" value="Show Chart" onClick="JavaScript:onSubmit()">
-        <br><br>
-    </form>
-
         <?php
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
          $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
@@ -38,6 +20,24 @@ function chart_show_all(){ ?>
          }
       }//end if
         ?>
+
+    <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8">
+        <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
+            <option value="0">Select Node:</option>
+
+            <? for($i=1;$i< sizeof($nodes);$i++){ ?>
+                <option value="<?echo $i."+".$nodes[$i-1];?>"><?echo $nodes[$i-1];?></option>
+            <?  }   ?>
+        </select>
+        <select id="capabilities" name= "capabilities">
+            <option value="0">Select Capability:</option>
+        </select>
+        From: <input id ="from" type="text" name="from" placeholder="2013-06-17-10-00-00">
+        To:   <input id ="to" type="text" name="to" placeholder="2013-06-17-12-00-00"><br><br>
+        <br><br>
+        <input type="submit" id="submit" value="Show Chart" onClick="JavaScript:onSubmit()">
+        <br><br>
+    </form>
     <script type="text/javascript">
         var capability= new Array();
         var cap = new Array();
