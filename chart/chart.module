@@ -1,5 +1,5 @@
 <?php
-function chart_show_all(){ ?>
+function chart_show_all($testbed){ ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 
         <?php
@@ -14,9 +14,9 @@ function chart_show_all(){ ?>
              $to =explode('-',urldecode($_GET['to']));
              $date_from = mktime($from[3],$from[4],$from[5],$from[1],$from[2],$from[0])*1000;
              $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
-             chart_graph($nodeUrn,$capabilityUrn,$date_from,$date_to);
+             chart_graph($testbed,$nodeUrn,$capabilityUrn,$date_from,$date_to);
          }else{
-             chart_graph($nodeUrn,$capabilityUrn,0,0);
+             chart_graph($testbed,$nodeUrn,$capabilityUrn,0,0);
          }
       }//end if
         ?>
@@ -26,7 +26,7 @@ function chart_show_all(){ ?>
         var opt= new Array();
         <?php
             unset($lines);
-            $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/status/raw");
+            $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
             $lines= explode("\n",$raw);
             $k=0;
             $nodes=array();
@@ -98,7 +98,7 @@ function chart_show_all(){ ?>
         }
 
     </script>
-    <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8">
+    <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8" >
                 <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
                         <option value="0">Select Node:</option>
 
@@ -118,7 +118,7 @@ function chart_show_all(){ ?>
 <?php
 }//end of function
 
-function chart_graph($node,$capability,$from,$to){
+function chart_graph($testbed,$node,$capability,$from,$to){
     $node_prefix="";
     $cap_prefix="";
     $temp_node  =explode(":",$node);
@@ -200,9 +200,9 @@ function chart_graph($node,$capability,$from,$to){
                             <?
                             if(($from==0)&&($to==0))
                             {
-                                 $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/limit/10");
+                                 $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/limit/10");
                             }else{
-                                  $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/");
+                                  $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/");
 
                             }
                             $lines = explode("\n", $tabdelimited);
@@ -224,7 +224,155 @@ function chart_graph($node,$capability,$from,$to){
             });
         });
     </script>
+
     <div id="<?php echo $node_prefix.$node."_".$cap_prefix.$capability;?>"></div><br><br>
 
 <?php
 }//end of graph()
+
+    function chart_speedometer($testbed,$node,$capability,$div_name){
+        $node_prefix="";
+        $cap_prefix="";
+        $temp_node  =explode(":",$node);
+        $temp_capability = explode(":",$capability);
+        for($i=0;$i<count($temp_node)-1;$i++){
+            $node_prefix=$node_prefix.$temp_node[$i].":";
+        }
+        for($i=0;$i<count($temp_capability)-1;$i++){
+            $cap_prefix=$cap_prefix.$temp_capability[$i].":";
+        }
+        $node = $temp_node[count($temp_node)-1];
+        $capability = $temp_capability[count($temp_capability)-1];
+        ?>
+        <script>
+            var chart_gauge;
+            chart_gauge = new Highcharts.Chart({
+
+                    chart: {
+                        renderTo: '<?php echo $div_name;?>',
+                        type: 'gauge',
+                        plotBackgroundColor: '#FFFFFF',
+                        plotBackgroundImage: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+
+                    },
+
+                    title: {
+                        text: '<?php echo $capability;?> now!'
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    pane: {
+                        startAngle: -140,
+                        endAngle: 140,
+                        background: [
+                            {
+                                backgroundColor: {
+                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                    stops: [
+                                        [0, '#FFF'],
+                                        [1, '#333']
+                                    ]
+                                },
+                                borderWidth: 0,
+                                outerRadius: '109%'
+                            },
+                            {
+                                backgroundColor: {
+                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                    stops: [
+                                        [0, '#333'],
+                                        [1, '#FFF']
+                                    ]
+                                },
+                                borderWidth: 1,
+                                outerRadius: '107%'
+                            },
+                            {
+                                // default background
+                            },
+                            {
+                                backgroundColor: '#FFF',
+                                borderWidth: 0,
+                                outerRadius: '105%',
+                                innerRadius: '103%'
+                            }
+                        ]
+                    },
+
+                    // the value axis
+                    yAxis: {
+                        min: 0,
+                        max: 100,
+                        minorTickInterval: 'auto',
+                        minorTickWidth: 1,
+                        minorTickLength: 10,
+                        minorTickPosition: 'inside',
+                        minorTickColor: '#666',
+
+                        tickPixelInterval: 30,
+                        tickWidth: 2,
+                        tickPosition: 'inside',
+                        tickLength: 10,
+                        tickColor: '#666',
+                        labels: {
+                            step: 2,
+                            rotation: 'auto'
+                        },
+                        title: {
+                            text: '(%)'
+                        },
+                        plotBands: [{
+                            from: 0,
+                            to: 40,
+                            color: '#95B9C7	' // grey
+                        },{
+                            from: 30,
+                            to: 70,
+                            color: '#3090C7' // green
+                        }, {
+                            from: 70,
+                            to: 100,
+                            color: '#0000A0' // yellow
+                        }]
+
+                    },
+
+                    series: [{
+                        name: '<?=$capability?>',
+                        data: [<?php
+                $latestreading = file_get_contents("http://uberdust.cti.gr/rest/testbed/$testbed/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/latestreading");
+                $row = explode("\t", $latestreading);
+                echo $row[1];
+                 ?>
+                        ],
+                        tooltip: {
+                            valueSuffix: ' %'
+                        }
+                    }],
+                    exporting: { enabled: false }
+                },
+                // Add some life
+
+                function (chart_gauge){
+                    if (!chart_gauge.renderer.forExport) {
+                        setInterval(function () {
+                            var point_gauge = chart_gauge.series[0].points[0],
+                                newVal_gauge = window.<?=$capability?>;
+                            // inc = Math.round((Math.random() - 0.5) * 20);
+                            point_gauge.update(parseFloat(newVal_gauge));
+                        }, 3000);
+                    }
+                });
+            window.<?=$capability?>=<?php echo $row[1];?> ;
+            chart_gauge.setSize(300, 300, false);
+            connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $cap_prefix.$capability;?>",function(value2add){
+                var val= new Array();
+                val=value2add.split(" ");
+                window.<?=$capability?> =val[8];
+            });
+        </script>
+    <?php
+    }
