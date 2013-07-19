@@ -1,0 +1,369 @@
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<!--    <script src="http://code.highcharts.com/modules/exporting.js"></script>-->
+
+<script src="http://uberdust.cti.gr/js/ws/uberdustws.js"></script>
+<?php //tested $testbed=1; $node = "weatherStation";
+function weather_charts($testbed,$node,$capability){
+    if($testbed == 1){
+        $node_prefix= "urn:wisebed:ctitestbed:";
+        $capability_prefix = "urn:wisebed:node:capability:";
+    }
+
+    ?>
+
+    <script type="text/javascript">
+    <?php
+    if($capability=="winddirection"){
+  ?>
+    $(function () {
+        var gauge_wind = new Highcharts.Chart({
+
+                chart: {
+                    renderTo: 'gauge_winddirection',
+                    type: 'gauge'
+                },
+
+                title: {
+                    text: null
+                },
+                title: {
+                    text: 'Wind Direction'
+                },
+                credits: {
+                    enabled: false
+                },
+                pane: {
+                    startAngle: 0,
+                    endAngle: 360
+                },
+
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 360,
+
+                    minorTickInterval: 30,
+                    tickInterval: 90,
+                    labels: {
+                        distance: 15,
+                        formatter: function () {
+                            return { 0: 'N', 90: 'W', 180: 'S', 270: 'W' }[this.value];
+                        }
+                    }
+                },
+
+                series: [{
+                    name: 'Wind direction',
+                    data: [<?php
+                         $latestreading = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$capability_prefix.$capability."/latestreading");
+                         $row = explode("\t", $latestreading);
+                        echo $row[1];
+                  ?>],
+                    tooltip: {
+                        valueSuffix: ' deg'
+                    },
+                    dial: {
+                        baseWidth: 1,
+                        topWidth: 6,
+                        baseLength: 10
+                    }
+                }],
+                exporting: { enabled: false }
+
+            },
+            // Add some life
+        function (gauge_wind) {
+            if (!gauge_wind.renderer.forExport) {
+                setInterval(function () {
+                    var point =gauge_wind.series[0].points[0],
+                        newVal = window.winddirection;
+                    // inc = Math.round((Math.random() - 0.5) * 20);
+                    point.update(parseFloat(newVal));
+                }, 3000);
+            }
+        });
+        window.winddirection=<?php echo $row[1];?>;
+        gauge_wind.setSize(300, 300, false);
+    });
+
+    connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $capability_prefix."winddirection";?>",function(value2add){
+        var val= new Array();
+        val=value2add.split(" ");
+        window.winddirection =val[8];
+        console.log(val[8]);
+    });
+
+
+<?php
+ }/// end of if capability== winddirection
+
+?>
+        var chart;
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'chart_<?php echo $capability;?>',
+                    defaultSeriesType: 'spline',
+                    zoomType: 'x',
+                    spacingRight: 20
+                 },
+                title: {
+                    text: '<?=$capability?> chart'
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    title: {
+                        text: 'GMT'
+                    },
+                    type: 'datetime',
+                    dateTimeLabelFormats: {
+                        day: '%e %b',
+                        month: '%e %b'
+                    },
+                    tickPixelInterval: 400,
+                    maxZoom: 500
+                },
+                yAxis: {
+                    title: {
+                        text: '<?= $capability?>'
+                    },
+                    min: 0.6,
+                    startOnTick: false,
+                    showFirstLabel: false
+                },
+                tooltip: {
+                    shared: true
+                }
+                ,
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        lineWidth: 1,
+                        marker: {
+                            enabled: false,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    radius: 5
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: '<?= $capability?>',
+                        data: [
+                            <?
+                            $nowtime = time()*1000;
+                            $an_hour_before=$nowtime-3600000;
+                            $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$capability_prefix.$capability."/tabdelimited/from/".$an_hour_before."/to/".$nowtime."/");
+                            $lines = explode("\n", $tabdelimited);
+                            unset($lines[count($lines)-1]);
+
+                            $firstRow = explode("\t", $lines[0]);
+                            unset($lines[0]);
+                            $data="[".$firstRow[0]." , ".$firstRow[1]."]";
+                            foreach ($lines as $thisLine) {
+                                 $row = explode("\t", $thisLine);
+                                 $data=" [".$row[0]." , ".$row[1]."],".$data;
+                            }
+                            print($data);
+                            ?>
+                        ]
+                    }
+                ],
+                exporting: { enabled: false }
+            });
+            chart.setSize(300, 300, false);
+        }); //end of function
+
+
+<?php
+ if($capability=="humidity"){
+
+ ?>
+           $(document).ready(function(){
+
+
+               var chart_gauge;
+               chart_gauge = new Highcharts.Chart({
+
+                       chart: {
+                           renderTo: 'gauge_<?php echo $capability;?>',
+                           type: 'gauge',
+                           plotBackgroundColor: '#FFFFFF',
+                           plotBackgroundImage: null,
+                           plotBorderWidth: 0,
+                           plotShadow: false
+
+                       },
+
+                       title: {
+                           text: '<?php echo $capability;?> now!'
+                       },
+                       credits: {
+                           enabled: false
+                       },
+                       pane: {
+                           startAngle: -140,
+                           endAngle: 140,
+                           background: [
+                               {
+                                   backgroundColor: {
+                                       linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                       stops: [
+                                           [0, '#FFF'],
+                                           [1, '#333']
+                                       ]
+                                   },
+                                   borderWidth: 0,
+                                   outerRadius: '109%'
+                               },
+                               {
+                                   backgroundColor: {
+                                       linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                       stops: [
+                                           [0, '#333'],
+                                           [1, '#FFF']
+                                       ]
+                                   },
+                                   borderWidth: 1,
+                                   outerRadius: '107%'
+                               },
+                               {
+                                   // default background
+                               },
+                               {
+                                   backgroundColor: '#FFF',
+                                   borderWidth: 0,
+                                   outerRadius: '105%',
+                                   innerRadius: '103%'
+                               }
+                           ]
+                       },
+
+                       // the value axis
+                       yAxis: {
+                           min: 0,
+                           max: 100,
+                           minorTickInterval: 'auto',
+                           minorTickWidth: 1,
+                           minorTickLength: 10,
+                           minorTickPosition: 'inside',
+                           minorTickColor: '#666',
+
+                           tickPixelInterval: 30,
+                           tickWidth: 2,
+                           tickPosition: 'inside',
+                           tickLength: 10,
+                           tickColor: '#666',
+                           labels: {
+                               step: 2,
+                               rotation: 'auto'
+                           },
+                           title: {
+                               text: '(%)'
+                           },
+                           plotBands: [{
+                               from: 0,
+                               to: 40,
+                               color: '#95B9C7	' // grey
+                           },{
+                               from: 30,
+                               to: 70,
+                               color: '#3090C7' // green
+                            }, {
+                                from: 70,
+                                    to: 100,
+                                    color: '#0000A0' // yellow
+                            }]
+
+        },
+
+        series: [{
+            name: 'Humidity',
+            data: [<?php
+                         $latestreading = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$capability_prefix.$capability."/latestreading");
+                         $row = explode("\t", $latestreading);
+                        echo $row[1];
+                  ?>],
+            tooltip: {
+                valueSuffix: ' %'
+            }
+        }],
+        exporting: { enabled: false }
+        },
+        // Add some life
+
+               function (chart_gauge){
+                   if (!chart_gauge.renderer.forExport) {
+                       setInterval(function () {
+                           var point_gauge = chart_gauge.series[0].points[0],
+                               newVal_gauge = window.humidity;
+                           // inc = Math.round((Math.random() - 0.5) * 20);
+                           point_gauge.update(parseFloat(newVal_gauge));
+                       }, 3000);
+                   }
+               });
+        window.humidity=<?php echo $row[1];?> ;
+        chart_gauge.setSize(300, 300, false);
+    });
+        connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $capability_prefix."humidity";?>",function(value2add){
+            var val= new Array();
+            val=value2add.split(" ");
+            window.humidity =val[8];
+            console.log(val[8]);
+        });
+
+<?php
+
+}
+?>
+    </script>
+
+<?php
+
+}
+function weather_capabilities($testbed,$node){
+    if($testbed == 1){
+        $node_prefix= "urn:wisebed:ctitestbed:";
+    }
+    $capabilities = file_get_contents("http://uberdust.cti.gr/rest/testbed/" . $testbed . "/node/" . $node_prefix . $node . "/capabilities" );
+    $line = explode("\n", $capabilities);
+    echo '  <table>';
+    for($i=0; $i<sizeof($line); $i++){
+        if(($i%2)==0){
+              echo '<tr>';
+        }
+        $column= explode("\t", $line[$i]);
+        $capability = explode(":", $column[0]);
+        if($capability[0]=="urn"){
+            $count = sizeof($capability)-1;
+            echo ' <td> ';
+            echo     ' <div id="chart_'.$capability[$count].'" style="width:400px; height:300px;"></div>';
+            echo ' </td>';
+
+            weather_charts($testbed,$node,$capability[$count]);
+        }
+        if(($i%2)==1){
+            echo '</tr>';
+        }
+
+    }
+    echo '<tr><td>';
+    echo "<div id = 'gauge_humidity'> </div>";
+    echo '<?/td><td>';
+    echo "<div id='gauge_winddirection'></div>";
+    echo '</td></tr>';
+
+    echo         '</table>';
+}
+
+
