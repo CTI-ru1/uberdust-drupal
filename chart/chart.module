@@ -226,7 +226,7 @@ function chart_graph($node,$capability,$from,$to){
             });
         });
     </script>
-    <div id="<?php echo $node_prefix.$node."_".$cap_prefix.$capability;?>"></div>
+    <div id="<?php echo $node_prefix.$node."_".$cap_prefix.$capability;?>"></div><br><br>
 
 <?php
 }//end of graph()
