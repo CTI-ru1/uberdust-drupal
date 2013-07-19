@@ -206,19 +206,18 @@ function chart_graph($node,$capability,$from,$to){
                                   $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/1/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/");
 
                             }
-
                             $lines = explode("\n", $tabdelimited);
                             unset($lines[count($lines)-1]);
 
                             $firstRow = explode("\t", $lines[0]);
-                            print("         [".$firstRow[0]." , ".$firstRow[1]."]");
                             unset($lines[0]);
-
+                            $data="[".$firstRow[0]." , ".$firstRow[1]."]";
                             foreach ($lines as $thisLine) {
-                              $row = explode("\t", $thisLine);
-
-                              print(",\n                                 [".$row[0]." , ".$row[1]."]");
+                                 $row = explode("\t", $thisLine);
+                                 $data=" [".$row[0]." , ".$row[1]."],".$data;
                             }
+                            print($data);
+
                             ?>
                         ]
                     }
