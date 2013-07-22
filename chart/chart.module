@@ -528,7 +528,7 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
     foreach ($lines as $thisLine) {
         $row = explode("\t", $thisLine);
         $i = date("H",$row[0]/1000);
-        print($i."\t".date("c",$row[0]/1000)."\n");
+        //print($i."\t".date("c",$row[0]/1000)."\n");
         $hours[$i]++;
     }
 
