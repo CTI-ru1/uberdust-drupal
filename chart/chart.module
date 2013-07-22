@@ -551,7 +551,7 @@ function chart_admin() {
     $form['chart_maxdisp'] = array(
         '#type' => 'textfield',
         '#title' => t('Maximum number of links'),
-        '#default_value' => variable_get('onthisdate_maxdisp', 3),
+        '#default_value' => variable_get('chart_maxdisp', 3),
         '#size' => 2,
         '#maxlength' => 2,
         '#description' => t("The maximum number of links to display in the block."),
