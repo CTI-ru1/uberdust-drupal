@@ -130,6 +130,7 @@ function chart_show_all($testbed,$div_name){ ?>
 }//end of function
 
 function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
+    $chart_color =  variable_get('chart_color','#000');
     $node_prefix="";
     $cap_prefix="";
     $temp_node  =explode(":",$node);
@@ -152,7 +153,8 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                     defaultSeriesType: 'spline',
                     zoomType: 'x',
                     spacingRight: 20,
-                    borderRadius: 0
+                    borderRadius: 0,
+                    backgroundColor:<?php echo $chart_color;?>
                 },
                 title: {
                     text: '<?=$capability?> chart inside <?=$node?>'
