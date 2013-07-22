@@ -67,7 +67,10 @@ function chart_show_all($testbed,$div_name){ ?>
         function showNodes(str){
             console.log("send "+str);
              var url='http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
-            $('response').load(url);
+            $.get(url,function(data,status){
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+
 //                $.ajax({
 //                    type: 'GET',
 //                    url: url,
