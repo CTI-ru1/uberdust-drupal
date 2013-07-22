@@ -485,6 +485,8 @@ function chart_direction($testbed,$node,$capability,$div_name){
 function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
 
    <?php
+         drupal_add_js("http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js",'external');
+
     $node_prefix="";
     $cap_prefix="";
     $temp_node  =explode(":",$node);
