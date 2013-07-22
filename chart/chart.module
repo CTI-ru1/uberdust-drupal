@@ -483,14 +483,6 @@ function chart_direction($testbed,$node,$capability,$div_name){
 }
 
 function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
-    <script type="text/javascript">
-
-        $(function() {
-            /** This code runs when everything has been loaded on the page */
-            /* Inline sparklines take their values from the contents of the tag */
-            $('<?php echo $div_name?>').sparkline();
-        });
-    </script>
 
    <?php
     $node_prefix="";
@@ -540,10 +532,7 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
 
 
     ksort($hours);
-    foreach ($hours as $key => $value) {
-        echo "Hour: $key; Sum: $value<br />\n";
-    }
-
+    
     $hstring = "$(\"#".$div_name."\").sparkline([";
 
     foreach ($hours as $key => $value) {
