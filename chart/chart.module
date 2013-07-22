@@ -554,8 +554,8 @@ function chart_admin() {
         '#type' => 'textfield',
         '#title' => t('Chart Background Color'),
         '#default_value' => variable_get('chart_color', '#FFF'),
-        '#size' => 5,
-        '#maxlength' => 5,
+        '#size' => 7,
+        '#maxlength' => 7,
         '#description' => t("The chart background color"),
         '#required' => TRUE,
     );
