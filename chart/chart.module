@@ -544,12 +544,14 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
         echo "Hour: $key; Sum: $value<br />\n";
     }
 
-    $hstring = "";
+    $hstring = "$(\"#".$div_name."\").sparkline([";
 
     foreach ($hours as $key => $value) {
         $hstring .= $value .",";
     }
     $hstring = rtrim($hstring, ",");
+    $hstring = $hstring. "],{type: 'line'});";
+    echo $hstring;
 }
 ?>
 </script>
