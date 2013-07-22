@@ -169,8 +169,10 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
     $offset = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone/offset");
     $from=intval($from) + intval($offset);
     $to = intval($to) + intval($offset);
+
     ?>
     <script>
+        console.log("<?php echo 'from '.$from.'  to '.$to.'    offset '.$offset;?>")
         var chart;
         $(document).ready(function() {
             chart = new Highcharts.Chart({
