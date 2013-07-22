@@ -31,7 +31,7 @@ function chart_show_all($testbed,$div_name){ ?>
       }//end if
         ?>
     <div id = "response"><div>
-    <script type="text/javascript" src=http://code.jquery.com/jquery-1.9.1.js>
+    <script type="text/javascript">
         var capability= new Array();
         var cap = new Array();
         var opt= new Array();
