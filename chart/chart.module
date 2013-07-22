@@ -548,13 +548,13 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
 function chart_admin() {
     $form = array();
 
-    $form['chart_maxdisp'] = array(
+    $form['chart_color'] = array(
         '#type' => 'textfield',
-        '#title' => t('Maximum number of links'),
-        '#default_value' => variable_get('chart_maxdisp', 3),
-        '#size' => 2,
-        '#maxlength' => 2,
-        '#description' => t("The maximum number of links to display in the block."),
+        '#title' => t('Chart Background Color'),
+        '#default_value' => variable_get('chart_color', '#FFF'),
+        '#size' => 5,
+        '#maxlength' => 5,
+        '#description' => t("The chart background color"),
         '#required' => TRUE,
     );
 
@@ -566,7 +566,7 @@ function chart_menu() {
     $items = array();
 
     $items['admin/settings/chart'] = array(
-        'title' => 'On this date module settings',
+        'title' => 'Chart module settings',
         'description' => 'Description of your Chart settings page',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('chart_admin'),
