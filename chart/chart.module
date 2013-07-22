@@ -172,7 +172,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
 
     ?>
     <script>
-        console.log("<?php echo 'from '.$from.'  to '.$to.'    offset '.$offset;?>")
+        console.log('<?php echo "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/";?>');
         var chart;
         $(document).ready(function() {
             chart = new Highcharts.Chart({
