@@ -414,13 +414,9 @@ function chart_direction($testbed,$node,$capability,$div_name){
         renderTo: '<?php echo $div_name;?>',
                         type: 'gauge',
                         plotBackgroundColor: '<?php echo $chart_color;?>'
-        },
-        tooltip:{
-            style: {
-                color: '<?php echo $chart_color;?>'
-                 }
-        },
 
+        },
+        maskColor:'<?php echo $chart_color; ?>',
         title: {
             text: null
         },
