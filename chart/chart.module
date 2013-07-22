@@ -158,7 +158,9 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                     backgroundColor:'<?php echo $chart_color;?>'
                 },
                 title: {
-                    text: '<?=$capability?> chart inside <?=$node?>'
+                    text: '<?=$capability?> chart inside <?=$node?>',
+                    color: '#FFFFFF'
+
 
                 },
                 credits: {
@@ -416,6 +418,7 @@ function chart_direction($testbed,$node,$capability,$div_name){
                         plotBackgroundColor: '<?php echo $chart_color;?>'
 
         },
+
         maskColor:'<?php echo $chart_color; ?>',
         title: {
             text: null
