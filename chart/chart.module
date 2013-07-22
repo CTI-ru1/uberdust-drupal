@@ -3,7 +3,7 @@
 /**
  * Implements hook_init().
  */
-function uberdust_charts_init()
+function chart_init()
 {
       drupal_add_js("http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js",'external');
 }
