@@ -542,9 +542,6 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
     }
     $hstring = rtrim($hstring, ",");
     $hstring = $hstring. "],{type: 'line'});";
-    echo $hstring;
+    echo $hstring."</script>";
 }
-?>
-</script>
-<?
 
