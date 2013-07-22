@@ -65,16 +65,10 @@ function chart_show_all($testbed,$div_name){ ?>
         function showNodes(str){
             console.log("send "+str);
             $.post('http://uberdust.cti.gr:81/uberdust/content/charts', { testbed: str }, function() {
+                alert("Save Complete")
+            }
             });
-            console.log("after post");
-            $.ajax({
-                type: 'POST'
-                url: "http://uberdust.cti.gr:81/uberdust/content/charts",
-                data: str.toString(),
-                dataType: "text",
-                success: function(resultData) { alert("Save Complete") }
-
-
+            
         }
         function showCapabilities(str)
         {
