@@ -64,11 +64,17 @@ function chart_show_all($testbed,$div_name){ ?>
         ?>
         function showNodes(str){
             console.log("send "+str);
-            $.post('http://uberdust.cti.gr:81/uberdust/content/charts', { testbed: str }, function() {
-                alert("Save Complete")
-            }
-            });
-            
+            url='http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    contentType: 'html; charset=utf-8',
+                    dataType: 'text/html'
+                }).success(function(response) {
+                        return response;
+                    }).error(function(response) {
+                        return response;
+                    });
         }
         function showCapabilities(str)
         {
