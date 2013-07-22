@@ -66,10 +66,10 @@ function chart_show_all($testbed,$div_name){ ?>
             console.log("send "+str);
              var url='http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     url: url,
                     contentType: 'html; charset=utf-8',
-                    dataType: 'text/html'
+                    dataType: 'html'
                 }).success(function(response) {
                         return response;
                     }).error(function(response) {
