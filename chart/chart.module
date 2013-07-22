@@ -31,12 +31,14 @@ function chart_show_all($testbed,$div_name){ ?>
          }
       }//end if
         ?>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript">
         var capability= new Array();
         var cap = new Array();
         var opt= new Array();
         <?php
             unset($lines);
+            $testbed=$_POST['testbed'];
             $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
             $lines= explode("\n",$raw);
             $k=0;
@@ -61,7 +63,13 @@ function chart_show_all($testbed,$div_name){ ?>
             }
             echo '";';
         ?>
+        function showNodes(str){
+            $.post('http://uberdust.cti.gr:81/uberdust/content/charts', { testbed: str }, function() {
+                content.html(response);
+            });
 
+
+        }
         function showCapabilities(str)
         {
             opt= document.getElementById("nodes").value.split("+");
@@ -110,8 +118,13 @@ function chart_show_all($testbed,$div_name){ ?>
 
     </script>
     <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8" >
-<!--                <select id = "testbed" name="testbed">-->
-                <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
+                <select id = "testbed" name="testbed"onchange="showNodes(this.value)">
+                        <option value="0">Select Testbed:</option>
+                    <? for($i=1;$i<=6;$i++){ ?>
+                        <option value="<?echo $i;?>">Testbed <?echo $i;?></option>
+                    <?  }   ?>
+                </select>
+                <select id = "nodes" name= "nodes" onchange="showCapabilities(this.value)">
                         <option value="0">Select Node:</option>
 
                         <? for($i=1;$i< sizeof($nodes);$i++){ ?>
