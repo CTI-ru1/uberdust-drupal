@@ -31,8 +31,7 @@ function chart_show_all($testbed,$div_name){ ?>
          }
       }//end if
         ?>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src=http://code.jquery.com/jquery-1.9.1.js>
         var capability= new Array();
         var cap = new Array();
         var opt= new Array();
@@ -67,6 +66,13 @@ function chart_show_all($testbed,$div_name){ ?>
             console.log("send "+str);
             $.post('http://uberdust.cti.gr:81/uberdust/content/charts', { testbed: str }, function() {
             });
+            console.log("after post");
+            $.ajax({
+                type: 'POST'
+                url: "http://uberdust.cti.gr:81/uberdust/content/charts",
+                data: str.toString(),
+                dataType: "text",
+                success: function(resultData) { alert("Save Complete") }
 
 
         }
