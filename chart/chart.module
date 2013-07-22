@@ -167,8 +167,8 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
 
     $timezone= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone");
     $offset = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone/offset");
-    $from=intval($from) + intval($offset);
-    $to = intval($to) + intval($offset);
+    $from=intval($from) ;//+ intval($offset);
+    $to = intval($to) ;//+ intval($offset);
 
     ?>
     <script>
@@ -254,10 +254,10 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
 
                             $firstRow = explode("\t", $lines[0]);
                             unset($lines[0]);
-                            $data="[".$firstRow[0]." , ".$firstRow[1]."]";
+                            $data="[".( intval($offset) + intval($firstRow[0]))." , ".$firstRow[1]."]";
                             foreach ($lines as $thisLine) {
                                  $row = explode("\t", $thisLine);
-                                 $data=" [".$row[0]." , ".$row[1]."],".$data;
+                                 $data=" [".(intval($offset)+intval($row[0]))." , ".$row[1]."],".$data;
                             }
                             print($data);
 
