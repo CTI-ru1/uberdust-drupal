@@ -162,7 +162,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
     for($i=0;$i<count($temp_capability)-1;$i++){
         $cap_prefix=$cap_prefix.$temp_capability[$i].":";
     }
-    $node = $temp_node[count($temp_node)-1];
+    $node = urldecode($temp_node[count($temp_node)-1]);
     $capability = $temp_capability[count($temp_capability)-1];
 
     $timezone= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone");
