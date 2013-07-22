@@ -11,7 +11,6 @@ function chart_init()
 
 
 function chart_show_all($testbed,$div_name){ ?>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 
         <?php
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
@@ -62,9 +61,10 @@ function chart_show_all($testbed,$div_name){ ?>
             }
             echo '";';
         ?>
+
         function showNodes(str){
             console.log("send "+str);
-            url='http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
+             var url='http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
                 $.ajax({
                     type: 'POST',
                     url: url,
