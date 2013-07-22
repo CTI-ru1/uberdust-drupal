@@ -110,6 +110,7 @@ function chart_show_all($testbed,$div_name){ ?>
 
     </script>
     <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8" >
+<!--                <select id = "testbed" name="testbed">-->
                 <select id = "nodes" name= "node" onchange="showCapabilities(this.value)">
                         <option value="0">Select Node:</option>
 
@@ -245,6 +246,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
 }//end of graph()
 
     function chart_speedometer($testbed,$node,$capability,$div_name){
+        $chart_color =  variable_get('chart_color','#000');
         $node_prefix="";
         $cap_prefix="";
         $temp_node  =explode(":",$node);
@@ -265,7 +267,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                     chart: {
                         renderTo: '<?php echo $div_name;?>',
                         type: 'gauge',
-                        plotBackgroundColor: '#FFFFFF',
+                        plotBackgroundColor: '<?php echo $chart_color;?>',
                         plotBackgroundImage: null,
                         plotBorderWidth: 0,
                         plotShadow: false
@@ -391,6 +393,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
     <?php
     }
 function chart_direction($testbed,$node,$capability,$div_name){
+    $chart_color =  variable_get('chart_color','#000');
     $node_prefix="";
     $cap_prefix="";
     $temp_node  =explode(":",$node);
@@ -409,7 +412,8 @@ function chart_direction($testbed,$node,$capability,$div_name){
 
         chart: {
         renderTo: '<?php echo $div_name;?>',
-                        type: 'gauge'
+                        type: 'gauge',
+                        plotBackgroundColor: '<?php echo $chart_color;?>'
         },
 
         title: {
