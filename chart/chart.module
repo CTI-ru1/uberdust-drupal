@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * Implements hook_init().
+ */
+function uberdust_charts_init()
+{
+      drupal_add_js("http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js",'external');
+}
+
+
+
 function chart_show_all($testbed,$div_name){ ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 
