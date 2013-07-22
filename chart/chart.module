@@ -164,6 +164,11 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
     }
     $node = $temp_node[count($temp_node)-1];
     $capability = $temp_capability[count($temp_capability)-1];
+
+    $timezone= file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone");
+    $offset = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/timezone/offset");
+    $from=intval($from) + intval($offset);
+    $to = intval($to) + intval($offset);
     ?>
     <script>
         var chart;
@@ -189,7 +194,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
 
                 xAxis: {
                     title: {
-                        text: 'GMT'
+                        text: '<?php echo  $timezone;?>'
                     },
                     type: 'datetime',
                     dateTimeLabelFormats: {
