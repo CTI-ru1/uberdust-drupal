@@ -154,7 +154,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                     zoomType: 'x',
                     spacingRight: 20,
                     borderRadius: 0,
-                    backgroundColor:<?php echo $chart_color;?>
+                    backgroundColor:'<?php echo $chart_color;?>'
                 },
                 title: {
                     text: '<?=$capability?> chart inside <?=$node?>'
