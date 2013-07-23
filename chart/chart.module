@@ -74,18 +74,16 @@ function chart_show_all($testbed,$div_name){ ?>
                     document.capform.nodes.options[0]=new Option("Select Node:","0");
                     document.capform.nodes.options.length=1;
                 }else{
-
                     document.capform.nodes.options[0]=new Option("Select Node:","0");
-
                     for(var i=0;i<cap.length;i++){
                         document.capform.nodes.options[i+1]=new Option(nodes[i], nodes[i]);
                     }
                     document.capform.nodes.options.length=nodes.length;
                 }
-                }
             });
 
-        }
+        }//end of showNodes
+        
         function showCapabilities(str)
         {
             opt= document.getElementById("nodes").value.split("+");
