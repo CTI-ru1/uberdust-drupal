@@ -14,9 +14,8 @@ function chart_show_all($testbed,$div_name){ ?>
         <script src=http://code.jquery.com/jquery-1.9.1.js> </script>
         <?php
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
-         $nodeUrn1 = explode(" ",urldecode($_GET["nodes"]));
-         $nodeUrn=$nodeUrn1[1];
-         $capabilityUrn=$_GET["capabilities"];
+         $nodeUrn=urldecode($_GET["nodes"]);
+         $capabilityUrn=urldecode($_GET["capabilities"]);
         echo "<script><console.log('nodeUrn: ".$nodeUrn."capabilityUrn:".$capabilityUrn."')/script>";
          if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
              $from = explode('-',urldecode($_GET['from']));
