@@ -70,11 +70,9 @@ function chart_show_all($div_name){ ?>
                             for(j=0;j<(urn.length-1);j++){
                                 capability[k]=capability[k]+urn[j]+':';
                             }
-                            var name = urn[urn.length-1];
-                            var value =  capability[k]+urn[urn.length-1];
+                            var name = "'"+urn[urn.length-1]+"'";
+                            var value = "'"+capability[k]+urn[urn.length-1]+"'";
                             document.capform.capabilities.options[i+1]=new Option(name,value);
-                            console.log("capability: "+name +"  value:"+value);
-
                         }
                     }
                     document.capform.capabilities.options.length=capability.length;
