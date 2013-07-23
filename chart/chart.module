@@ -43,7 +43,7 @@ function chart_show_all($div_name){ ?>
                         for(var i=0;i<nodes.length;i++){
                             document.capform.nodes.options[i+1]=new Option(nodes[i], nodes[i]);
                         }
-                        document.capform.nodes.options.length=nodes.length+1;
+                        document.capform.nodes.options.length=nodes.length;
                    }
             });
 
@@ -72,12 +72,12 @@ function chart_show_all($div_name){ ?>
                             }
                             var name = urn[urn.length-1];
                             var value = capability[k]+urn[urn.length-1];
-                            document.capform.capabilities.options[i+1]= new Option(name,value);
-                            console.log(" option "+  document.capform.capabilities.options[i+1].value);
+                            document.capform.capabilities.options[k+1]= new Option(name,value);
+                            console.log(" option "+  document.capform.capabilities.options[k+1].value);
 
                         }
                     }
-                    document.capform.capabilities.options.length=capability.length+1;
+                    document.capform.capabilities.options.length=capability.length;
                 });
             }
         }//end of showCapabilities
