@@ -72,8 +72,8 @@ function chart_show_all($div_name){ ?>
                             }
                             var name = urn[urn.length-1];
                             var value = capability[k]+urn[urn.length-1];
-                            document.capform.capabilities.options[k+1]= new Option(name,value);
-                            console.log(" option "+  document.capform.capabilities.options[k+1].value);
+                            document.capform.capabilities.options[k]= new Option(name,value);
+                            console.log(" option "+  document.capform.capabilities.options[k].value);
 
                         }
                     }
