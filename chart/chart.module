@@ -17,7 +17,7 @@ function chart_show_all($testbed,$div_name){ ?>
          $nodeUrn1 = explode(" ",urldecode($_GET["nodes"]));
          $nodeUrn=$nodeUrn1[1];
          $capabilityUrn=$_GET["capabilities"];
-
+        echo "<script><console.log('nodeUrn: ".$nodeUrn."capabilityUrn:".$capabilityUrn."')/script>";
          if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
              $from = explode('-',urldecode($_GET['from']));
              $to =explode('-',urldecode($_GET['to']));
