@@ -72,7 +72,7 @@ function chart_show_all($div_name){ ?>
                             }
                             var name = urn[urn.length-1];
                             var value = capability[k]+urn[urn.length-1];
-                            document.capform.capabilities.options[i+1]=new Option("capability "+k,value);
+                            document.capform.capabilities.options[i+1]=new Option(name,value);
                         }
                     }
                     document.capform.capabilities.options.length=capability.length;
