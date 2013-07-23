@@ -13,20 +13,20 @@ function chart_init()
 function chart_show_all($div_name){ ?>
         <script src=http://code.jquery.com/jquery-1.9.1.js> </script>
         <?php
-        $testbed = $_GET['testbed'];
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
-         $nodeUrn = urldecode($_GET["nodes"]);
-         $capabilityUrn = urldecode($_GET["capabilities"]);
-         if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
-             $from = explode('-',urldecode($_GET['from']));
-             $to =explode('-',urldecode($_GET['to']));
-             $date_from = mktime($from[3],$from[4],$from[5],$from[1],$from[2],$from[0])*1000;
-             $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
-             chart_graph($testbed,$nodeUrn,$capabilityUrn,$date_from,$date_to,$div_name);
-         }else{
-             chart_graph($testbed,$nodeUrn,$capabilityUrn,0,0,$div_name);
-         }
-      }//end if
+             $testbed = $_GET['testbed'];
+             $nodeUrn = urldecode($_GET["nodes"]);
+             $capabilityUrn = urldecode($_GET["capabilities"]);
+             if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
+                 $from = explode('-',urldecode($_GET['from']));
+                 $to =explode('-',urldecode($_GET['to']));
+                 $date_from = mktime($from[3],$from[4],$from[5],$from[1],$from[2],$from[0])*1000;
+                 $date_to = mktime($to[3],$to[4],$to[5],$to[1],$to[2],$to[0])*1000;
+                 chart_graph($testbed,$nodeUrn,$capabilityUrn,$date_from,$date_to,$div_name);
+             }else{
+                 chart_graph($testbed,$nodeUrn,$capabilityUrn,0,0,$div_name);
+             }
+        }//end if
         ?>
     <script type="text/javascript">
 
@@ -73,8 +73,6 @@ function chart_show_all($div_name){ ?>
                             var name = urn[urn.length-1];
                             var value = capability[k]+urn[urn.length-1];
                             document.capform.capabilities.options[k]= new Option(name,value);
-                            console.log(" option "+  document.capform.capabilities.options[k].value);
-
                         }
                     }
                     document.capform.capabilities.options.length=capability.length;
