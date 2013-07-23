@@ -96,7 +96,7 @@ function chart_show_all($testbed,$div_name){ ?>
                     var lines=data.split('\n');
                     var k=0;
                     for(i=0;i<lines.length;i++){
-                        var urn=lines.split(":");
+                        var urn=lines[i].split(":");
                         if(urn[0]=="urn"){
                             k++;
                             capability[k]=urn[-1];
