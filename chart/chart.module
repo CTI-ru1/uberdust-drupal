@@ -14,7 +14,7 @@ function chart_show_all($testbed,$div_name){ ?>
         <script src=http://code.jquery.com/jquery-1.9.1.js> </script>
         <?php
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
-         $nodeUrn1 = explode(" ",urldecode($_GET["node"]));
+         $nodeUrn1 = explode(" ",urldecode($_GET["nodes"]));
          $nodeUrn=$nodeUrn1[1];
          $capability=$_GET["capabilities"];
          $capabilityUrn="urn:wisebed:node:capability:".$capability;
@@ -32,37 +32,7 @@ function chart_show_all($testbed,$div_name){ ?>
         ?>
     <div id = "response"><div>
     <script type="text/javascript">
-        var capability= new Array();
-        var cap = new Array();
-        var opt= new Array();
 
-        <?php
-            unset($lines);
-            $testbed=$_POST['testbed'];
-            $raw = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/status/raw");
-            $lines= explode("\n",$raw);
-            $k=0;
-            $nodes=array();
-            $nodes[0]=" ";
-            for($i=0;$i<sizeof($lines);$i++){
-                $node=explode("\t",$lines[$i]);
-                if(!(in_array($node[0],$nodes))){
-                    $nodes[$k]=$node[0];
-                    if($i!=0){echo '";';}
-                    echo 'capability['.$k.'+1]="';
-                    $k++;
-                }
-                if (isset($node[1])==1){
-                    $nodecap = explode(":",$node[1]);
-                }
-                unset($node);
-                if ((isset($nodecap[4])==1)&&($nodecap[0]== "urn")){
-                    echo $nodecap[4].' ';
-                    unset($nodecap);
-                }
-            }
-            echo '";';
-        ?>
 
         function showNodes(str){
             console.log("Testbed "+str);
@@ -85,7 +55,7 @@ function chart_show_all($testbed,$div_name){ ?>
 
         function showCapabilities(str)
         {
-
+            var capability= new Array();
             if(str =="0"){
                 document.capform.capabilities.options[0]=new Option("Select Capability:","0");
                 document.capform.capabilities.options.length=1;
@@ -94,11 +64,17 @@ function chart_show_all($testbed,$div_name){ ?>
                 var url='/uberdust/misc/data.php?q=http://uberdust.cti.gr/rest/testbed/'+testbed+'/node/'+str+'/capabilities';
                 $.get(url,function(data){
                     var lines=data.split('\n');
-                    var k=0;
+                    var i, j, k=0;
                     for(i=0;i<lines.length;i++){
                         var urn=lines[i].split(":");
+
                         if(urn[0]=="urn"){
                             k++;
+                            capability[k]="";
+                            for(j=0;j<(urn.length-1);j++){
+                                capability[k]=capability[k]+urn[j]+':';
+                            }
+                            document.capform.capabilities.options[i+1]=new Option(urn[urn.length-1], capability[k]+urn[urn.length-1]);
                             capability[k]=urn[urn.length-1];
                         }
                     }
