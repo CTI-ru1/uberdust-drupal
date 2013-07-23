@@ -10,13 +10,13 @@ function chart_init()
 
 
 
-function chart_show_all($testbed,$div_name){ ?>
+function chart_show_all($div_name){ ?>
         <script src=http://code.jquery.com/jquery-1.9.1.js> </script>
         <?php
+        $testbed = $_GET['testbed'];
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
-         $nodeUrn=urldecode($_GET["nodes"]);
-         $capabilityUrn=urldecode($_GET["capabilities"]);
-        echo "<script><console.log('nodeUrn: ".$nodeUrn."capabilityUrn:".$capabilityUrn."')/script>";
+         $nodeUrn = urldecode($_GET["nodes"]);
+         $capabilityUrn = urldecode($_GET["capabilities"]);
          if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
              $from = explode('-',urldecode($_GET['from']));
              $to =explode('-',urldecode($_GET['to']));
@@ -28,9 +28,7 @@ function chart_show_all($testbed,$div_name){ ?>
          }
       }//end if
         ?>
-    <div id = "response"><div>
     <script type="text/javascript">
-
 
         function showNodes(str){
             console.log("Testbed "+str);
@@ -79,10 +77,8 @@ function chart_show_all($testbed,$div_name){ ?>
                     }
                     document.capform.capabilities.options.length=capability.length;
                 });
-
-
             }
-        }
+        }//end of showCapabilities
 
         function onSubmit()
         {   nodes=document.getElementById("nodes").value;
