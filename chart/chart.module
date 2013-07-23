@@ -66,16 +66,24 @@ function chart_show_all($testbed,$div_name){ ?>
 
         function showNodes(str){
             console.log("Testbed "+str);
-             var url='/uberdust/misc/data.php?q=http://uberdust.cti.gr/rest/testbed/'+str+'/status/raw';
+             var url='/uberdust/misc/data.php?q=http://uberdust.cti.gr/rest/testbed/'+str+'/node/raw';
             $.get(url,function(data,status){
                 console.log("Data: " + data + "\nStatus: " + status);
-            });
-//            $.get(url, function(data) {
-//                $('response').html(data);
-//                console.log(data);
-//
-//            });
+                var nodes=data.split("/n");
+                if(str =="0"){
+                    document.capform.nodes.options[0]=new Option("Select Node:","0");
+                    document.capform.nodes.options.length=1;
+                }else{
 
+                    document.capform.nodes.options[0]=new Option("Select Node:","0");
+
+                    for(var i=0;i<cap.length;i++){
+                        document.capform.nodes.options[i+1]=new Option(nodes[i], nodes[i]);
+                    }
+                    document.capform.nodes.options.length=nodes.length;
+                }
+                }
+            });
 
         }
         function showCapabilities(str)
