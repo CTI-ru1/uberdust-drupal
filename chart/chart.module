@@ -68,7 +68,7 @@ function chart_show_all($testbed,$div_name){ ?>
             console.log("Testbed "+str);
              var url='/uberdust/misc/data.php?q=http://uberdust.cti.gr/rest/testbed/'+str+'/node/raw';
             $.get(url,function(data,status){
-                var nodes=data.split("/n");
+                var nodes=data.split("\n");
                 console.log("Node 0: " + nodes[0]);
                 if(str =="0"){
                     document.capform.nodes.options[0]=new Option("Select Node:","0");
