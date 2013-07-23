@@ -16,8 +16,7 @@ function chart_show_all($testbed,$div_name){ ?>
         if(isset($_GET['capabilities'])&& ($_GET['capabilities']!="0")){
          $nodeUrn1 = explode(" ",urldecode($_GET["nodes"]));
          $nodeUrn=$nodeUrn1[1];
-         $capability=$_GET["capabilities"];
-         $capabilityUrn="urn:wisebed:node:capability:".$capability;
+         $capabilityUrn=$_GET["capabilities"];
 
          if (($_GET['from']!=NULL)&&($_GET['to'])!=NULL){
              $from = explode('-',urldecode($_GET['from']));
