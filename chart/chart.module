@@ -72,6 +72,7 @@ function chart_show_all($testbed,$div_name){ ?>
 //            });
             $.get(url, function(data) {
                 $('response').html(data);
+                console.log(data);
                 alert('Load was performed.');
             });
 
