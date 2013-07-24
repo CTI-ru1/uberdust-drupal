@@ -366,7 +366,7 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                             color: '#3090C7' // blue
                         }, {
                             from: <?php echo 0.7*$maxvalue; ?>,
-                            to: <?php $maxvalue;?>,
+                            to: <?php echo $maxvalue;?>,
                             color: '#0000A0' // dark blue
                         }]
 
