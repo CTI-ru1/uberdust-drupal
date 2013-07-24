@@ -357,17 +357,17 @@ function chart_graph($testbed,$node,$capability,$from,$to,$div_name){
                             text: '<?php echo $unit;?>'
                         },
                         plotBands: [{
-                            from: 0,
-                            to: 40,
-                            color: '#95B9C7	' // grey
+                            from: <?php echo $minvalue; ?>,
+                            to: <?php echo 0.4*$maxvalue; ?>,
+                            color: '#95B9C7	' // light blue
                         },{
-                            from: 30,
-                            to: 70,
-                            color: '#3090C7' // green
+                            from: <?php echo 0.4*$maxvalue; ?>,
+                            to: <?php echo 0.7*$maxvalue; ?>,
+                            color: '#3090C7' // blue
                         }, {
-                            from: 70,
-                            to: 100,
-                            color: '#0000A0' // yellow
+                            from: <?php echo 0.7*$maxvalue; ?>,
+                            to: <?php $maxvalue;?>,
+                            color: '#0000A0' // dark blue
                         }]
 
                     },
