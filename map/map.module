@@ -1,0 +1,175 @@
+<?php
+function map(){
+?>
+
+    <meta name="viewport">
+    <meta charset="utf-8">
+      <style>
+    #map-canvas {
+              width: 800px;
+              height:500px;
+          }
+    #info1{
+        width:200px;
+        height:40px;
+    }
+    #info2{
+        width: 300px;
+        height:60px;
+    }
+    img[src*="iws3.png"] {
+        display: none;
+    }
+      </style>
+
+      <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+        // https://developers.google.com/maps/documentation/javascript/overlays
+        // info window
+function initialize() {
+    var myLatlng = new google.maps.LatLng(39.074208,21.824312);
+    var dimotiko_55 = new google.maps.LatLng(37.990111,23.724264);
+    var athens_cti = new google.maps.LatLng(37.983716,23.72931);
+    var kastoria_gymnasio = new google.maps.LatLng(40.519269,21.268717);
+    var larisa_2oEpal = new google.maps.LatLng(39.624037,22.409075);
+    var dimotiko54 = new google.maps.LatLng(38.226804,21.729162);
+    var gymnasio8 = new google.maps.LatLng(38.234567,21.740166);
+
+
+    var mapOptions = {
+        zoom: 7,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var image = "/var/www/drupal-7.15/sites/all/modules/solar_panel.png";
+    //school_1//////////
+    var content1 = '<div id="info2"><p charset="utf-8"><a href = "">55ο Δημοτικό Σχολείο Αθηνών</a></p><p charset="utf-8"><a href="">Athens CTI</p></div>';
+
+    var infowindow1 = new google.maps.InfoWindow({
+        content: content1
+
+    });
+    var marker_1 = new google.maps.Marker({
+        position: dimotiko_55,
+        map: map,
+        title:'55ο Δημοτικό Σχολείο Αθηνών',
+        icon:'sites/all/images/solar_marker.png'
+    });
+
+    google.maps.event.addListener(marker_1, 'click', function() {
+        infowindow1.open(map,marker_1);
+    });
+///////////////////////////////
+    var content2 = '<div id="info2"><p charset="utf-8"><a href = "">55ο Δημοτικό Σχολείο Αθηνών</a></p><p charset="utf-8"><a href="">Athens CTI</p></div>';
+
+    var infowindow2 = new google.maps.InfoWindow({
+        content: content2
+
+    });
+    var marker_2 = new google.maps.Marker({
+        position: athens_cti,
+        map: map,
+        title:'Athens CTI',
+        icon:'sites/all/images/solar_marker.png'
+    });
+
+    google.maps.event.addListener(marker_2, 'click', function() {
+        infowindow2.open(map,marker_2);
+    });
+////////3
+    var content3 = '<div id="info1"><p charset="utf-8"><a href="" >Γυμνάσιο Καστοριάς</a><p></div>';
+
+    var infowindow3 = new google.maps.InfoWindow({
+        content: content3
+
+    });
+    var marker_3 = new google.maps.Marker({
+        position: kastoria_gymnasio,
+        map: map,
+        title:'Γυμνάσιο Καστοριάς',
+        icon:'sites/all/images/solar_marker.png'
+    });
+
+    google.maps.event.addListener(marker_3, 'click', function() {
+        infowindow3.open(map,marker_3);
+    });
+///////////////////4
+    var content4 = '<div id="info1"><p charset="utf-8"><a href="" >2ο ΕΠΑΛ Λάρισας</a><p></div>';
+//<div><p align="center"><a href="http://www.google.gr">'+
+//    '<img src="sites/all/images/solar_panel.png" alt="HTML tutorial" width="128" height="128"></a></p></div>
+    var infowindow4 = new google.maps.InfoWindow({
+        content: content4
+
+
+});
+    var marker_4 = new google.maps.Marker({
+        position: larisa_2oEpal,
+        map: map,
+        title: '2ο ΕΠΑΛ Λάρισας',
+        icon:'sites/all/images/solar_marker.png'
+    });
+
+    google.maps.event.addListener(marker_4, 'click', function() {
+        infowindow4.open(map,marker_4);
+    });
+/////////////////////////5
+    var content5 = '<div id="info2"><p charset="utf-8"><a href= "">54o Δημοτικό Σχολείο Πατρών</a></p><p charset="utf-8"><a href="">8o Γυμνάσιο Πατρών</p></div>';
+    var infowindow5 = new google.maps.InfoWindow({
+        content: content5
+
+    });
+    var marker_5 = new google.maps.Marker({
+        position: dimotiko54,
+        map: map,
+        title: '54o Δημοτικό Σχολείο Πατρών',
+        icon:'sites/all/images/solar_marker.png'
+    });
+
+    google.maps.event.addListener(marker_5, 'click', function() {
+        infowindow5.open(map,marker_5);
+    });
+    var content6 = '<div id="info2"><p charset="utf-8"><a href="">54o Δημοτικό Σχολείο Πατρών</a></p><p charset="utf-8"><a href="">8o Γυμνάσιο Πατρών</p></div>';
+
+    var infowindow6 = new google.maps.InfoWindow({
+        content: content6
+
+    });
+    var marker_6 = new google.maps.Marker({
+        position: gymnasio8,
+        map: map,
+        title: '8o Γυμνάσιο Πατρών',
+        icon:'sites/all/images/solar_marker.png'
+     });
+
+    google.maps.event.addListener(marker_5, 'click', function() {
+        infowindow5.open(map,marker_5);
+    });
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    <table>
+        <tr><td>
+            <div id="map-canvas"></div></br></br>
+        </td></tr>
+        <td><tr>
+            <div id = "form">
+                <select>
+                    <option value="0">Επιλογή σχολείου</option>
+                    <option value="school_1">55ο Δημοτικό Σχολείο Αθηνών</option>
+                    <option value="school_2">Athens CTI</option>
+                    <option value="school_3">Γυμνάσιο Καστοριάς</option>
+                    <option value="school_4">2ο ΕΠΑΛ Λάρισας</option>
+                    <option value="school_5">54o Δημοτικό Σχολείο Πατρών</option>
+                    <option value="school_6">8o Γυμνάσιο Πατρών</option>
+                </select>
+            </div>
+        </td></tr>
+    </table>
+
+<?php
+} //end of map()
