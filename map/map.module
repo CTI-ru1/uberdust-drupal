@@ -55,7 +55,7 @@ function initialize() {
         position: dimotiko_55,
         map: map,
         title:'55ο Δημοτικό Σχολείο Αθηνών',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
     });
 
     google.maps.event.addListener(marker_1, 'click', function() {
@@ -72,7 +72,7 @@ function initialize() {
         position: athens_cti,
         map: map,
         title:'Athens CTI',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
     });
 
     google.maps.event.addListener(marker_2, 'click', function() {
@@ -89,7 +89,7 @@ function initialize() {
         position: kastoria_gymnasio,
         map: map,
         title:'Γυμνάσιο Καστοριάς',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
     });
 
     google.maps.event.addListener(marker_3, 'click', function() {
@@ -108,7 +108,7 @@ function initialize() {
         position: larisa_2oEpal,
         map: map,
         title: '2ο ΕΠΑΛ Λάρισας',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
     });
 
     google.maps.event.addListener(marker_4, 'click', function() {
@@ -124,7 +124,7 @@ function initialize() {
         position: dimotiko54,
         map: map,
         title: '54o Δημοτικό Σχολείο Πατρών',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
     });
 
     google.maps.event.addListener(marker_5, 'click', function() {
@@ -140,7 +140,7 @@ function initialize() {
         position: gymnasio8,
         map: map,
         title: '8o Γυμνάσιο Πατρών',
-        icon:'sites/all/images/solar_marker.png'
+        icon:'/uberdust/misc/solar_marker.png'
      });
 
     google.maps.event.addListener(marker_5, 'click', function() {
