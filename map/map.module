@@ -152,24 +152,26 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-    <table>
-        <tr><td>
-            <div id="map-canvas"></div></br></br>
-        </td></tr>
-        <tr><td>
-            <div id = "form">
-                <select>
-                    <option value="0">Επιλογή σχολείου</option>
-                    <option value="school_1">55ο Δημοτικό Σχολείο Αθηνών</option>
-                    <option value="school_2">Athens CTI</option>
-                    <option value="school_3">Γυμνάσιο Καστοριάς</option>
-                    <option value="school_4">2ο ΕΠΑΛ Λάρισας</option>
-                    <option value="school_5">54o Δημοτικό Σχολείο Πατρών</option>
-                    <option value="school_6">8o Γυμνάσιο Πατρών</option>
-                </select>
-            </div>
-        </td></tr>
-    </table>
+    <center>
+        <table style="align:center;">
+            <tr><td>
+                <div id="map-canvas"></div></br></br>
+            </td></tr>
+            <tr><td>
+                <div id = "form">
+                    <select>
+                        <option value="0">Επιλογή σχολείου</option>
+                        <option value="school_1">55ο Δημοτικό Σχολείο Αθηνών</option>
+                        <option value="school_2">Athens CTI</option>
+                        <option value="school_3">Γυμνάσιο Καστοριάς</option>
+                        <option value="school_4">2ο ΕΠΑΛ Λάρισας</option>
+                        <option value="school_5">54o Δημοτικό Σχολείο Πατρών</option>
+                        <option value="school_6">8o Γυμνάσιο Πατρών</option>
+                    </select>
+                </div>
+            </td></tr>
+        </table>
+    </center>
 
 <?php
 } //end of map()
