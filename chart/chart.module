@@ -505,6 +505,67 @@ function chart_direction($testbed,$node,$capability,$div_name){
 
 <?php
 }
+function chart_thermometer($testbed,$node,$capability,$div_name){
+    $node_prefix="";
+    $cap_prefix="";
+    $temp_node  =explode(":",$node);
+    $temp_capability = explode(":",$capability);
+    for($i=0;$i<count($temp_node)-1;$i++){
+        $node_prefix=$node_prefix.$temp_node[$i].":";
+    }
+    for($i=0;$i<count($temp_capability)-1;$i++){
+        $cap_prefix=$cap_prefix.$temp_capability[$i].":";
+    }
+    $node = $temp_node[count($temp_node)-1];
+    $capability = $temp_capability[count($temp_capability)-1];
+    ?>
+    <script>
+        $(function () {
+            $('#<?php echo $div_name ?>').highcharts({
+                chart: {
+                    type: 'column',
+                    marginBottom: 53
+                },
+                credits: {
+                    enabled: false
+                },
+                title: null,
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: null,
+                    align: 'right'
+                },
+                xAxis: {
+                    labels: false
+                },
+                series: [{
+                    data: [<?php
+                        $latestreading = file_get_contents("http://uberdust.cti.gr/rest/testbed/$testbed/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/latestreading");
+                        $row = explode("\t", $latestreading);
+                         echo $row[1];
+                        ?>],
+                    color: 'red'
+                }]
+            }, function(chart) { // on complete
+
+                chart.renderer.image('http://www.clker.com/cliparts/p/W/e/k/U/d/blank-fundraising-thermometer.svg', 0, 0, 256, 400)
+                    .add();
+            });
+        });
+    </script>
+
+
+
+
+<?
+}
 
 function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
 
