@@ -503,7 +503,6 @@ function chart_direction($testbed,$node,$capability,$div_name){
 </script>
 
 
-    <?php chart_thermometer(1,"urn:wisebed:ctitestbed:weatherStation",""urn:wisebed:node:capability:temperature","thermometer"); ?>
 
 <?php
 }
@@ -556,7 +555,7 @@ function chart_thermometer($testbed,$node,$capability,$div_name){
                         ?>],
                     color: 'red'
                 }]
-            });
+            },
         function(thermometer) { // on complete
                 thermometer.renderer.image('http://www.clker.com/cliparts/p/W/e/k/U/d/blank-fundraising-thermometer.svg', 0, 0, 256, 400).add();
             });
