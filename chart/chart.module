@@ -520,9 +520,10 @@ function chart_thermometer($testbed,$node,$capability,$div_name){
     $capability = $temp_capability[count($temp_capability)-1];
     ?>
     <script>
-        $(function () {
-            $('#<?php echo $div_name ?>').highcharts({
+        var thermometer = new Highcharts.Chart({
+
                 chart: {
+                    renderTo: '<?php echo $div_name;?>',
                     type: 'column',
                     marginBottom: 53
                 },
@@ -553,15 +554,11 @@ function chart_thermometer($testbed,$node,$capability,$div_name){
                         ?>],
                     color: 'red'
                 }]
-            }, function(chart) { // on complete
-
-                chart.renderer.image('http://www.clker.com/cliparts/p/W/e/k/U/d/blank-fundraising-thermometer.svg', 0, 0, 256, 400)
-                    .add();
             });
-        });
+        function(thermometer) { // on complete
+                thermometer.renderer.image('http://www.clker.com/cliparts/p/W/e/k/U/d/blank-fundraising-thermometer.svg', 0, 0, 256, 400).add();
+            });
     </script>
-
-
 
 
 <?
