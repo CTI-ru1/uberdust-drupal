@@ -603,7 +603,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
     $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
-            renderTo: '<?php echo $div_name;?>',
+            renderTo: '<?=$div_name;?>',
             defaultSeriesType: 'spline',
             zoomType: 'x',
             spacingRight: 20,
@@ -611,7 +611,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
             backgroundColor:'<?php echo $chart_color;?>'
             },
             title: {
-            text: '<?=$capability?> chart inside <?=$node?>',
+            text: '<?=$capability?> - <?=$capability2?> chart inside <?=$node?>',
             color: '#FFFFFF'
 
 
@@ -721,7 +721,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
 
 <?php
-}//end of graph()
+}//end of double_graph()
 
 
 function chart_admin() {
