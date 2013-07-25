@@ -503,6 +503,8 @@ function chart_direction($testbed,$node,$capability,$div_name){
 </script>
 
 
+    <?php chart_thermometer(1,"urn:wisebed:ctitestbed:weatherStation",""urn:wisebed:node:capability:temperature","thermometer"); ?>
+
 <?php
 }
 function chart_thermometer($testbed,$node,$capability,$div_name){
