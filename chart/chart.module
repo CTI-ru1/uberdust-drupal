@@ -722,8 +722,9 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
 <?php
 }//end of double_graph()
+//<?php chart_double_graph(1,$node,"urn:wisebed:node:capability:temperature","urn:wisebed:node:capability:windspeed,$from,$to,"doublechart"); ?>
 
-
+<?php
 function chart_admin() {
     $form = array();
 
