@@ -631,7 +631,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
             },
             yAxis: {
                 title: {
-                     text: '<?php echo  $capability." - ".$capability2.")"?>'
+                     text: '<?php echo  $capability." - ".$capability2 ;?>'
                 },
                 startOnTick: false,
                 showFirstLabel: false
