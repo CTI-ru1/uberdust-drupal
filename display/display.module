@@ -1,0 +1,35 @@
+<?php
+function display_temperature($div){
+    ?>
+<script type="text/javascript" src="excanvas.js"></script>
+<![endif]-->
+<script type="text/javascript" src="segment-display.js"></script>
+<script type="text/javascript">
+
+    var display = new SegmentDisplay("<? echo $div;?>");
+    display.pattern         = "######";
+    display.displayAngle    = 10;
+    display.digitHeight     = 20;
+    display.digitWidth      = 12;
+    display.digitDistance   = 2.5;
+    display.segmentWidth    = 2.5;
+    display.segmentDistance = 0.5;
+    display.segmentCount    = 7;
+    display.cornerType      = 3;
+    display.colorOn         = "#4b1e05";
+    display.colorOff        = "#e95d0f";
+    display.draw();
+
+    display.setValue("000000");
+    connect("uberdust.cti.gr", "urn:wisebed:ctitestbed:weatherStation" , "urn:wisebed:node:capability:temperature",function(value2add){
+        var val=value2add.split(" ");
+        var value =val[8];
+        display.setValue(value);
+    });
+
+
+
+
+</script>
+<?php
+}
