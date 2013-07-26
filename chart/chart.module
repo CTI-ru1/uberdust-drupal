@@ -721,7 +721,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 <?php
 }//end of double_graph()
 
-<?php
+
 function chart_admin() {
     $form = array();
 
