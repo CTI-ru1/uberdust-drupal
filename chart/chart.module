@@ -641,7 +641,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
                     $firstRow = explode("\t", $lines[0]);
                     unset($lines[0]);
-                    $data="[".( intval($offset) + intval($firstRow[0]))." , ".$firstRow[1]."]";
+                    $data = intval($offset) + intval($firstRow[0]);
                     foreach ($lines as $thisLine) {
                         $row = explode("\t", $thisLine);
                         $data= (intval($offset)+intval($row[0]))." , ".$data;
@@ -697,7 +697,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
                     $firstRow = explode("\t", $lines[0]);
                     unset($lines[0]);
-                    $data="[".( intval($offset) + intval($firstRow[0]))." , ".$firstRow[1]."]";
+                    $data=$firstRow[1];
                     foreach ($lines as $thisLine) {
                         $row = explode("\t", $thisLine);
                         $data=" [".$row[1]."],".$data;
@@ -723,7 +723,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
                 $firstRow = explode("\t", $lines[0]);
                 unset($lines[0]);
-                $data="[".( intval($offset) + intval($firstRow[0]))." , ".$firstRow[1]."]";
+                $data=$firstRow[1];
                 foreach ($lines as $thisLine) {
                     $row = explode("\t", $thisLine);
                     $data=" [".$row[1]."],".$data;
