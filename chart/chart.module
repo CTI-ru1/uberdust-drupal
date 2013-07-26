@@ -610,42 +610,40 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
             backgroundColor:'<?php echo $chart_color;?>'
             },
             title: {
-            text: '<?=$capability?> - <?=$capability2?> chart inside <?=$node?>',
-            color: '#FFFFFF'
-
-
+                text: '<?=$capability?> - <?=$capability2?> chart inside <?=$node?>',
+                color: '#FFFFFF'
             },
             credits: {
-            enabled: false
+                 enabled: false
             },
 
             xAxis: {
-            title: {
-            text: '<?php echo  $timezone;?>'
-            },
-            type: 'datetime',
-            dateTimeLabelFormats: {
-            day: '%e %b',
-            month: '%e %b'
-            },
-            tickPixelInterval: 400,
-            maxZoom: 1000
+                title: {
+                    text: '<?php echo  $timezone;?>'
+                },
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    day: '%e %b',
+                    month: '%e %b'
+                },
+                tickPixelInterval: 400,
+                maxZoom: 1000
             },
             yAxis: {
-            title: {
-            text: '<?php echo  $capability." - ".$capability2.")"?>'
-            },
-            startOnTick: false,
-            showFirstLabel: false
+                title: {
+                     text: '<?php echo  $capability." - ".$capability2.")"?>'
+                },
+                startOnTick: false,
+                showFirstLabel: false
             },
             tooltip: {
-            shared: true
+                 shared: true
             },
             legend: {
-            enabled: false
+                 enabled: false
             },
             exporting: {
-            enabled: false
+                 enabled: false
             },
             plotOptions: {
                 series: {
