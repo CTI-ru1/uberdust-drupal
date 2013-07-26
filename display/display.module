@@ -7,7 +7,7 @@ function display_temperature($div){
 <script type="text/javascript">
 
     var display = new SegmentDisplay("<? echo $div;?>");
-    display.pattern         = "######";
+    display.pattern         = "###.###";
     display.displayAngle    = 10;
     display.digitHeight     = 20;
     display.digitWidth      = 12;
