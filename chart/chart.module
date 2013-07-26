@@ -603,11 +603,11 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
         chart = new Highcharts.Chart({
             chart: {
             renderTo:'<?php echo $div_name;?>',
-            defaultSeriesType: 'spline',
             zoomType: 'x',
             spacingRight: 20,
             borderRadius: 0,
-            backgroundColor:'<?php echo $chart_color;?>'
+            backgroundColor:'<?php echo $chart_color;?>',
+            type: 'area'
             },
             title: {
                 text: '<?=$capability?> - <?=$capability2?> chart inside <?=$node?>',
