@@ -600,19 +600,18 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
     <script>
      console.log('<?php echo "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/";?>');
     var chart;
-        chart = new Highcharts.Chart({
-            chart: {
-            renderTo: "<?php echo $div_name;?>",
-            defaultSeriesType: 'spline',
-            zoomType: 'x',
-            spacingRight: 20,
-            borderRadius: 0,
-            backgroundColor:'<?php echo $chart_color;?>'
-            },
+        $("#<?php echo $div_name;?>").highcharts({
+<!--            chart: {-->
+<!--            renderTo: '--><?php //echo $div_name;?><!--',-->
+<!--            defaultSeriesType: 'spline',-->
+<!--            zoomType: 'x',-->
+<!--            spacingRight: 20,-->
+<!--            borderRadius: 0,-->
+<!--            backgroundColor:'--><?php //echo $chart_color;?><!--'-->
+<!--            },-->
             title: {
             text: '<?=$capability?> - <?=$capability2?> chart inside <?=$node?>',
             color: '#FFFFFF'
-
 
             },
             credits: {
