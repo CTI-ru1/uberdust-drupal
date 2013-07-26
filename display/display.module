@@ -30,7 +30,7 @@ function display_temperature($testbed,$node,$capability,$div){
     display.segmentCount    = 7;
     display.cornerType      = 3;
     display.colorOn         = "#9F000F";
-    display.colorOff        = "#222";
+    display.colorOff        = "#221";
     display.draw();
     data= <?php
                 $latestreading = file_get_contents("http://uberdust.cti.gr/rest/testbed/$testbed/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/latestreading");
@@ -39,11 +39,9 @@ function display_temperature($testbed,$node,$capability,$div){
                  ?>;
     value = data.split(".");
     display.setValue(value[0]+"."+value[1]);
-    display.draw();
     connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $cap_prefix.$capability;?>",function(value2add){
         var val=value2add.split(" ");
         var value =val[8].split("."));
-
         display.setValue(value[0]+"."+value[1]);
     });
 
