@@ -661,6 +661,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
             },
             series: [
             {
+            color: '#00FF00',
             name: '<?= $capability?> reading',
             data: [
                     <?
@@ -687,6 +688,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
                 ]
             }    ,
             {
+            color: '#FF0000',
             name: '<?= $capability2?> reading',
             data: [
                 <?
