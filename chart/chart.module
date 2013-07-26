@@ -457,7 +457,7 @@ function chart_direction($testbed,$node,$capability,$div_name){
              labels: {
              distance: 15,
              formatter: function () {
-                return { 0: 'N', 90: 'W', 180: 'S', 270: 'E' }[this.value];
+                return { 0: 'N', 90: 'E', 180: 'S', 270: 'W' }[this.value];
                             }
                         }
         },
