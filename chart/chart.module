@@ -700,7 +700,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
                     $data=$firstRow[1];
                     foreach ($lines as $thisLine) {
                         $row = explode("\t", $thisLine);
-                        $data=" [".$row[1]."],".$data;
+                        $data= $row[1].",".$data;
                     }
                     print($data);
 
@@ -726,7 +726,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
                 $data=$firstRow[1];
                 foreach ($lines as $thisLine) {
                     $row = explode("\t", $thisLine);
-                    $data=" [".$row[1]."],".$data;
+                    $data=$row[1].",".$data;
                 }
                 print($data);
 
