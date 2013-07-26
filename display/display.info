@@ -1,3 +1,3 @@
 name = display
-description = Segment display
+description = Segment display module
 core = 7.x

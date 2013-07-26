@@ -16,8 +16,8 @@ function display_temperature($div){
     display.segmentDistance = 0.5;
     display.segmentCount    = 7;
     display.cornerType      = 3;
-    display.colorOn         = "#4b1e05";
-    display.colorOff        = "#e95d0f";
+    display.colorOn         = "#e95d0f";
+    display.colorOff        = "#4b1e05";
     display.draw();
 
     display.setValue("000000");
