@@ -598,13 +598,11 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
     ?>
 
-    <div id ="<?php echo $div_name; ?>"></div>
-    <script>
-     console.log('<?php echo "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/";?>');
+    <script type="text/javascript">
     var chart;
         chart = new Highcharts.Chart({
             chart: {
-            renderTo: "<?php echo $div_name;?>",
+            renderTo:'<?php echo $div_name;?>',
             defaultSeriesType: 'spline',
             zoomType: 'x',
             spacingRight: 20,
@@ -688,7 +686,9 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
                     print($data);
 
                     ?>
-            ],
+                ]
+            }    ,
+            {
             name: '<?= $capability2?> reading',
             data: [
                 <?
