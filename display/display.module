@@ -1,9 +1,9 @@
 <?php
 function display_temperature($div){
     ?>
-<script type="text/javascript" src="excanvas.js"></script>
+<script type="text/javascript" src="/uberdust/misc/js/excanvas.js"></script>
 <![endif]-->
-<script type="text/javascript" src="segment-display.js"></script>
+<script type="text/javascript" src="/uberdust/misc/js/segment-display.js"></script>
 <script type="text/javascript">
 
     var display = new SegmentDisplay("<? echo $div;?>");
