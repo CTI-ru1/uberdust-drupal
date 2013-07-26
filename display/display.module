@@ -13,7 +13,7 @@ function display_temperature($testbed,$node,$capability,$div){
     $node = $temp_node[count($temp_node)-1];
     $capability = $temp_capability[count($temp_capability)-1];
     ?>
-    ?>
+    
 <script type="text/javascript" src="/uberdust/misc/js/excanvas.js"></script>
 <![endif]-->
 <script type="text/javascript" src="/uberdust/misc/js/segment-display.js"></script>
