@@ -598,7 +598,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
 
     ?>
 
-    <script type="text/javascript" src="/js/themes/gray.js>
+    <script type="text/javascript" src="/js/themes/gray.js">
     var chart;
         chart = new Highcharts.Chart({
             chart: {
