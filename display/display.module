@@ -20,7 +20,7 @@ function display_temperature($testbed,$node,$capability,$div){
 <script type="text/javascript">
 
     var display = new SegmentDisplay("<? echo $div;?>");
-    display.pattern         = "######";
+    display.pattern         = "##.##";
     display.displayAngle    = 10;
     display.digitHeight     = 20;
     display.digitWidth      = 12;
@@ -37,12 +37,14 @@ function display_temperature($testbed,$node,$capability,$div){
                 $row = explode("\t", $latestreading);
                 echo $row[1];
                  ?>;
-    display.setValue(data);
+    value = data.split(".");
+    display.setValue(value[0]+"."+value[1]);
     display.draw();
     connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $cap_prefix.$capability;?>",function(value2add){
         var val=value2add.split(" ");
-        var value =val[8];
-        display.setValue(value);
+        var value =val[8].split("."));
+
+        display.setValue(value[0]+"."+value[1]);
     });
 
 </script>
