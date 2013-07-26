@@ -602,7 +602,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
     var chart;
         chart = new Highcharts.Chart({
             chart: {
-            renderTo: '<?=$div_name;?>',
+            renderTo: "<?php echo $div_name;?>",
             defaultSeriesType: 'spline',
             zoomType: 'x',
             spacingRight: 20,
