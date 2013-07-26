@@ -600,7 +600,6 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
     <script>
      console.log('<?php echo "http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability."/tabdelimited/from/".$from."/to/".$to."/";?>');
     var chart;
-    $(document).ready(function() {
         chart = new Highcharts.Chart({
             chart: {
             renderTo: '<?=$div_name;?>',
@@ -715,14 +714,12 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
             }
             ]
         });
-    });
     </script>
 
 
 
 <?php
 }//end of double_graph()
-//<?php chart_double_graph(1,$node,"urn:wisebed:node:capability:temperature","urn:wisebed:node:capability:windspeed,$from,$to,"doublechart"); ?>
 
 <?php
 function chart_admin() {
