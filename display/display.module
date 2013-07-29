@@ -38,15 +38,16 @@ function display_temperature($testbed,$node,$capability,$div){
                 echo $row[1];
                  ?>;
     value = data.split(".");
-//    display.setValue(value[0]+"."+value[1]);
-    display.setValue(data);
+    display.setValue(value[0]+"."+value[1]);
+  //  display.setValue(data);
     connect("uberdust.cti.gr", "<?php echo $node_prefix.$node;?>" , "<?php echo $cap_prefix.$capability;?>",function(value2add){
         var val=value2add.split(" ");
         var value =val[8].split("."));
-//        display.setValue(value[0]+"."+value[1]);
-        display.setValue(val[8]);
+        display.setValue(value[0]+"."+value[1]);
+   //     display.setValue(val[8]);
 
     });
+    console.log("connected");
 
 </script>
 <?php
