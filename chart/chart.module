@@ -109,25 +109,8 @@ function chart_show_all($div_name){ ?>
         }
 
     </script>
-    <form id="theForm" name = "capform" onSubmit="JavaScript:onSubmit()" accept-charset="utf-8" >
-                <select id = "testbed" name="testbed"onchange="showNodes(this.value)">
-                        <option value="0">Select Testbed:</option>
-                    <? for($i=1;$i<=6;$i++){ ?>
-                        <option value="<?echo $i;?>">Testbed <?echo $i;?></option>
-                    <?  }   ?>
-                </select>
-                <select id = "nodes" name= "nodes" onchange="showCapabilities(this.value)">
-                        <option value="0">Select Node:</option>
-                </select>
-                <select id="capabilities" name= "capabilities">
-                        <option value="0">Select Capability:</option>
-                </select>
-                From: <input id ="from" type="text" name="from" placeholder="2013-06-17-10-00-00">
-                To:   <input id ="to" type="text" name="to" placeholder="2013-06-17-12-00-00"><br><br>
-                <br><br>
-                <input type="submit" id="submit" value="Show Chart" onClick="JavaScript:onSubmit()">
-                <br><br>
-            </form>
+
+
 <?php
 }//end of function
 
@@ -573,7 +556,27 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
  <?
 }
 
+function chart_thermometer(){
+    ?>
+    <script src="RGraph.thermometer.js"></script>
+    <script>
+        window.onload = function ()
+        {
+            // Create the Thermometer chart. The arguments are: the canvas ID, the minimum,
+            // the maximum and the indicated value.
+            var thermometer = new RGraph.Thermometer('myCanvas', 0,100,14)
 
+                // Configure the thermometer chart to look as you want.
+                .Set('chart.gutter.left', 45)
+                .Set('chart.gutter.right', 45)
+                .Set('chart.colors', ['rgba(255,0,0,1)'])
+
+                // Now call the .Draw() method to draw the chart.
+                .Draw();
+        }
+    </script>
+    <?
+}
 
 function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$div_name){
     $chart_color =  variable_get('chart_color','#000');
@@ -603,6 +606,7 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
         chart = new Highcharts.Chart({
             chart: {
             renderTo:'<?php echo $div_name;?>',
+
             zoomType: 'x',
             spacingRight: 20,
             borderRadius: 0,
