@@ -558,7 +558,7 @@ function chart_sparkline($testbed,$node,$capability,$from,$to,$div_name){ ?>
 
 function chart_thermometer(){
     ?>
-    <script src="RGraph.thermometer.js"></script>
+    <script src="/uberdust/misc/js/RGraph.thermometer.js"></script>
     <script>
         window.onload = function ()
         {
