@@ -576,7 +576,7 @@ function chart_thermometer(){
 }
 
 function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$div_name){
-  chart_double_graph2($testbed,$node,$capability,$node2,$capability2,$from,$to,$div_name);
+  chart_double_graph2($testbed,$node,$capability,$node,$capability2,$from,$to,$div_name);
 }//end of double_graph()
 
 function chart_double_graph2($testbed,$node,$capability,$node2,$capability2,$from,$to,$div_name){
