@@ -699,9 +699,9 @@ function chart_double_graph2($testbed,$node,$capability,$node2,$capability2,$fro
                 <?
                 if(($from==0)&&($to==0))
                 {
-                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node2."/capability/".$cap_prefix.$capability2."/tabdelimited/limit/10");
+                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability2."/tabdelimited/limit/10");
                 }else{
-                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node2."/capability/".$cap_prefix.$capability2."/tabdelimited/from/".$from."/to/".$to."/");
+                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability2."/tabdelimited/from/".$from."/to/".$to."/");
 
                 }
                 $lines = explode("\n", $tabdelimited);
