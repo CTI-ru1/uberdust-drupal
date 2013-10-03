@@ -576,6 +576,11 @@ function chart_thermometer(){
 }
 
 function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$div_name){
+   chart_double_graph($testbed,$node,$capability,$node,$capability2,$from,$to,$div_name);
+}//end of double_graph()
+
+
+function chart_double_graph($testbed,$node,$capability,$node2,$capability2,$from,$to,$div_name){
     $chart_color =  variable_get('chart_color','#000');
     $node_prefix="";
     $cap_prefix="";
@@ -694,9 +699,9 @@ function chart_double_graph($testbed,$node,$capability,$capability2,$from,$to,$d
                 <?
                 if(($from==0)&&($to==0))
                 {
-                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability2."/tabdelimited/limit/10");
+                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node2."/capability/".$cap_prefix.$capability2."/tabdelimited/limit/10");
                 }else{
-                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node."/capability/".$cap_prefix.$capability2."/tabdelimited/from/".$from."/to/".$to."/");
+                    $tabdelimited = file_get_contents("http://uberdust.cti.gr/rest/testbed/".$testbed."/node/".$node_prefix.$node2."/capability/".$cap_prefix.$capability2."/tabdelimited/from/".$from."/to/".$to."/");
 
                 }
                 $lines = explode("\n", $tabdelimited);
